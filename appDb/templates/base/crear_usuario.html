@@ -1,0 +1,54 @@
+{% extends 'base/index.html' %}
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% load static %}
+{% block baseHtml %}
+<link rel="stylesheet" href="{% static 'appDb/css/registrarse.css' %}" type="text/css">
+<div class="container">
+  <form method="POST" action="{% url 'registro' %}" class="form-registrarse">
+    {% csrf_token %}
+    <div class="errores">
+      {% if messages %}
+      {% for message in messages %}
+      <p>{{ message }}</p>
+      {% endfor %}
+      {% endif %}
+    </div>
+    <div class="container-registro">
+      <img src="{% static './appDb/img/icono-registro.png' %}" alt="icono de registro" class="icon-registro">
+    </div>
+      <div class="select-perfil">
+        <label for="perfil">Perfil:</label>
+        <select id="perfil" name="perfil">
+          {% for perfil in perfiles %}
+            <option value="{{ perfil.id_perfil }}">{{ perfil.nombre_perfil }}</option>
+
+          {% endfor %}
+        </select><br>
+      </div>
+
+      <div class="nombre_usuario">
+        <input type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Nombre de Usuario" required><br>
+      </div>
+
+      <div class="password1">
+        <input type="password" id="password" name="password" placeholder="Password" required><br>
+      </div>
+
+      <div class="password2">
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmar Password" required><br>
+      </div>
+
+
+      <div>
+        <button class="d-grid gap-2 col-6 mx-auto btn-primary">Registrar</button>
+      </div>
+    </form>
+</div>
+<div class="title-registrarse">
+  <h1>Registrarse</h1>
+</div>
+
+{% endblock %}
+
+

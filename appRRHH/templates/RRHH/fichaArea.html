@@ -1,0 +1,24 @@
+{% extends 'base/index.html' %}
+
+{% block title %}Ficha de Trabajador{% endblock %}
+
+{% load static %}
+
+{% block baseHtml %}
+
+<h1>Ficha de trabajador</h1>
+<form method="POST" action="{% url 'fichaArea' %}" class="fichaArea">
+    {% csrf_token %}
+
+    <div>
+        <label for="nombre_area">Nombre de Area:</label>
+        <input type="text" id="nombre_area" name="nombre_area" placeholder="Ingrese el Nombre del Area al que pertenece" > 
+    </div>
+  
+    <div class="login-btn">
+        <input type="submit" value="Registrar" class="d-grid gap-2 col-6 mx-auto btn-primary">
+    </div>
+</form>
+<button onclick="location.href='{% url 'fichaDepartamento' %}'">Continuar Sin Crear Área</button>
+
+{% endblock %}

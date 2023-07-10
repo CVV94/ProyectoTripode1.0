@@ -1,0 +1,28 @@
+{% extends 'base/index.html' %}
+
+{% block title %}Ficha de Trabajador{% endblock %}
+
+{% load static %}
+
+{% block baseHtml %}
+
+<h1>{{ title }}</h1>
+<form method="post" action=".">
+    {% csrf_token %}
+    <div>
+        <label for="id_rut">Rut</label>
+            {{ form.rut }}
+    </div>
+    <div>
+        <label for="tipo_solicitud">Tipo de Solicitud:</label>
+            {{ form.tipo_solicitud }}
+    </div>
+    <div>
+        <label for="fecha_inicio">Fecha de Inicio:</label>
+        {{ form.fecha_inicio }}
+    </div>
+    <input type="submit" value="submit">
+
+    
+</form>
+{% endblock %}

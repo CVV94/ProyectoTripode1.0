@@ -1,0 +1,29 @@
+{% extends 'base/index.html' %}
+
+{% block title %}Ficha de Departamento{% endblock %}
+
+{% load static %}
+
+{% block baseHtml %}
+
+<h1>Ficha de trabajador</h1>
+<form method="POST" action="{% url 'fichaDepartamento' %}" class="fichaDepartamento">
+    {% csrf_token %}
+    <div>
+        <label for="id_area">Id Area:</label>
+        <select name="id_area" id="id_area">
+            {% for area in areas %}
+                <option value="{{ area.id_area }}" {% if forloop.last %}selected{% endif %}>{{ area.id_area }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="departamento">Departamento:</label>
+        <input type="text" id="departamento" name="departamento" placeholder="Ingrese el Nombre del Departamento al que pertenece"> 
+    </div>
+    <div class="login-btn">
+        <input type="submit" value="Registrar" class="d-grid gap-2 col-6 mx-auto btn-primary">
+    </div>
+</form>
+<button onclick="location.href='{% url 'fichaCargo' %}'">Continuar Sin Crear Departamento</button>
+{% endblock %}

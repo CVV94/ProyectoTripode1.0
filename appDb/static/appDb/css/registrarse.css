@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.form-registrarse {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    max-width: 20rem;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    height: 430px;
+}
+
+
+input{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    text-align: center;  
+    width: 17rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 23px; 
+    margin-bottom: 10px;
+}
+ 
+
+ 
+     
+.title-registrarse{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 100%;
+    max-width: 20rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 23px; 
+    padding: 20px;
+}
+
+.title-registrarse h1{
+    display: flex;
+    justify-content: center;
+}
+
+.icon-registro{
+    max-width: 100%;
+    height: auto;
+    height: 120px;
+}
+
+.container-registro{
+    display: flex;
+    justify-content: center;
+}
+
+.select-perfil{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    text-align: center;  
+    width: 17rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 23px; 
+    margin-bottom: 10px;
+}
+.errores{
+    font-size: small;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}

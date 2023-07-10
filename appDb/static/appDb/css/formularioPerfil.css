@@ -1,0 +1,62 @@
+.my-message {
+    color: blue;
+    font-size: 16px;
+    /* Agrega otros estilos personalizados aquí */
+    }
+
+.Perfil_title{
+    text-align: center;
+    color: #400000;
+    font-size: 30px;
+    padding-top: 20px;
+}
+
+
+form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: #abbaab;
+    background: -webkit-linear-gradient(to right, #ffffff, #abbaab);
+    background: linear-gradient(to right, #ffffff, #abbaab);
+    margin: auto;
+
+    width: 500px;
+    padding: 20px;
+    border-radius: 3px;
+
+    
+    
+}
+
+.form-group {
+    font-size: 2rem;
+    color: #1F1C2C;  /* fallback for old browsers */
+    color: -webkit-linear-gradient(to right, #928DAB, #1F1C2C);  /* Chrome 10-25, Safari 5.1-6 */
+    color: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.btn{
+    position: relative;
+    top: 15px;
+   
+}
+
+.form-group input[type="text"] {
+    color: rgb(6, 3, 29);
+    font-size: 20px;
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    width: 350px;
+  }
+  
+  .form-group input[type="text"]:focus {
+    outline: none;
+    border-color: transparent;
+  }

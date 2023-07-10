@@ -1,0 +1,55 @@
+{% extends 'base/index.html' %}
+
+{% block title %}Ficha de Trabajador{% endblock %}
+
+{% load static %}
+
+{% block baseHtml %}
+    <h1>Ficha de trabajador</h1>
+    <form method="POST" action="{% url 'fichaTrabajador' %}" class="fichaTrabajador">
+        {% csrf_token %}
+        <div>
+            <label for="rut">Rut:</label>
+            <input type="text" id="rut" name="rut" placeholder="Digite su rut" required> 
+        </div>
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required> 
+        </div>
+        <div>
+            <label for="sexo">Sexo:</label>
+            <input type="text" id="sexo" name="sexo" placeholder="Sexo" required> 
+        </div>
+        <div>
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" placeholder="Dirección" required> 
+        </div>
+        <div>
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" placeholder="Teléfono" required> 
+        </div>
+        <div>
+            <label for="fecha_ingreso">Fecha de Ingreso:</label>
+            <input type="date" id="fecha_ingreso" name="fecha_ingreso" required> 
+        </div>
+        <div>
+            <label for="id_cargo">Nombre del Cargo:</label>
+            <select name="id_cargo" id="id_cargo" required>
+                {% for cargo in cargos %}
+                <option value="{{ cargo.id_cargo }}">{{ cargo.nombre_cargo }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="id_usuario">Nombre de Usuario:</label>
+            <select name="id_usuario" id="id_usuario" required>
+                {% for usuario in usuarios %}
+                <option value="{{ usuario.id_usuario }}">{{ usuario.nombre_usuario }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="login-btn">
+            <input type="submit" value="Registrar" class="d-grid gap-2 col-6 mx-auto btn-primary">
+        </div>
+    </form>
+{% endblock %}

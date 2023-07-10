@@ -1,0 +1,80 @@
+{% extends 'paginas/index.html' %}
+{% block title %}modulo_trabajador{% endblock title %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static './listadoTrabajador/modulos.css' %}" type="text/css">
+
+{% block baseHtml %}
+
+
+       <!-- Menu -->
+    <section class="py-2 mt-3"  id="menu">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="h2 font-weight-light s-size text-center p-1">
+                        GESTIÓN DE RECURSOS HUMANOS
+                    </p>
+                    <p class="lead text-center">Perfil de Trabajador</p><hr class="bg-dark">
+                </div> 
+            </div>
+            <div class="card-columns">
+                <div class="card">
+                    <img src="{% static './listadoTrabajador/img/ediTrabajadores.jpg' %}" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Editar Perfil</h3>
+                        <p class="card-text">
+                            Modifica tus datos personales
+                        </p>
+                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
+                    </div>
+                </div>  
+                <div class="card">
+                    <img src="{% static './listadoTrabajador/img/crearTrabajador.JPG' %}" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Mi información</h3>
+                        <p class="card-text">
+                            Visualiza tu información personal, documentos y certificados
+                        </p>
+                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="{% static './listadoTrabajador/img/verTrabajadores.JPG' %}" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Mi Desempeño</h3>
+                        <p class="card-text">
+                            Visualiza tu desempeño laboral
+                        </p>
+                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="{% static './listadoTrabajador/img/verSolicitudes.png' %}" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">Mi Liquidación</h3>
+                        <p class="card-text">
+                            Visualiza los detalles de tu liquidación mensual
+                        </p>
+                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+   
+    
+    <!-- Footer -->
+    <section id="connect" class="p-2">
+        <div class="container pt-2">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="h6 font-weight-light">&copy; Trípode </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

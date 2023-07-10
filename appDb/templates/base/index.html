@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'appDb/css/index.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'appDb/css/login.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'appDb/css/listadoDeTrabajadores.css' %}" type="text/css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <!-- Aquí van tus enlaces CSS y scripts -->
+  <!-- data table css -->
+  
+  {% block head %}
+  
+  {% endblock  %}
+  
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <div class="logo-container">
+            <a class="navbar-brand" href="/">
+              <img src="{% static './appDb/img/correosYuri.gif' %}" alt="logo" class="logo img-fluid">
+            </a>
+          </div>
+          <div>
+            <div>
+              <ul class="navbar-nav">
+                
+                {% if request.session.nombre_usuario %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li class="nav-item">
+                  {% if request.session.nombre_perfil == 'RR.HH' %}
+                  <a class="nav-link" href="{% url 'visualizar' %}">Listado de Trabajadores</a>
+                  <a class="nav-link" href="{% url 'fichaArea' %}">Ficha de Trabajador</a>
+                  <a class="nav-link" href="{% url 'solicitudes' %}">Gestion de Solicitudes</a>
+                  {% endif %}
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Administrador
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="{% url 'perfil' %}">Crear Perfil</a></li>
+                    <li><a class="dropdown-item" href="{% url 'registro' %}">Crear Usuario</a></li>
+                  </ul>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <main>
+    {% block baseHtml %}
+    
+    {% endblock %}
+  </main>
+  {% block dataTable %}
+  
+  {% endblock %}
+  <!--Bootstarp 5-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+  {% block javascript %}
+
+  {% endblock  %}
+</body>
+</html>
