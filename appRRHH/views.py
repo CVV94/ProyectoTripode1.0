@@ -11,6 +11,8 @@ from appDb.models import Usuario
 from appDb.models import Departamento
 from appDb.models import Area
 from appDb.models import VacacionLicencia
+from appDb.models import Liquidacion
+from appDb.models import RegistroMedico
 
 def moduloRRHH(request):
     return render(request,'RRHH/moduloRRHH.html') # Redireccionar a la página del módulo de RRHH.
@@ -140,4 +142,99 @@ class GestionSolicitud(CreateView):
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context['title'] = 'Gestion de Solicitudes'
+        return context
+    
+
+
+
+# Creacion de liquidaciones
+def crear_liquidacion(request):
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        mes_liquidacion = request.POST.get('mes_liquidacion')
+        archivo_liquidacion = request.POST.get('archivo_liquidacion')
+        
+        try:
+            trabajador = Trabajador.objects.get(rut=rut)
+            formulario = Liquidacion(rut=trabajador, mes_liquidacion=mes_liquidacion, archivo_liquidacion=archivo_liquidacion)
+            formulario.save()
+            messages.success(request, 'Creación exitosa')
+            return redirect('liquidacion')
+        
+
+        except Exception as e:
+            messages.error(request, 'No existen liquidaciones disponibles')
+            return render(request, 'RRHH/crear_liquidacion.html')
+    
+    trabajadores = Trabajador.objects.all()
+
+    if trabajadores:
+        return render(request, 'RRHH/crear_liquidacion.html', {'trabajadores':trabajadores})
+    
+    else:
+        messages.error(request, 'No existen rut disponibles')
+        return redirect('liquidacion')
+
+
+# Ver liquidaciones
+class Ver_liquidacion(ListView):
+    model = Liquidacion 
+    template_name = 'RRHH/ver_ficha_liquidaciones.html'
+    def get_queryset(self):
+        liquidaciones = Liquidacion.objects.all()
+        return liquidaciones
+    
+    def get_context_data(self, **kwargs) :
+        context =  super().get_context_data(**kwargs)
+        context ['tittle'] = 'VerLiquidacion'
+        context ['liquidaciones'] = self.get_queryset()
+        return context
+    
+
+
+
+
+# Creacion de registro médico
+def crear_registro_medico(request):
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        tipo_registro = request.POST.get('tipo_registro')
+        rm_fecha_ingreso = request.POST.get('rm_fecha_ingreso')
+        rm_fecha_termino = request.POST.get('rm_fecha_termino')
+        archivo_medico = request.POST.get('archivo_medico')
+        
+        try:
+            trabajador = Trabajador.objects.get(rut=rut)
+            formulario = RegistroMedico(rut=trabajador, tipo_registro=tipo_registro, rm_fecha_ingreso=rm_fecha_ingreso, rm_fecha_termino=rm_fecha_termino, archivo_medico=archivo_medico)
+            formulario.save()
+            messages.success(request, 'Creación exitosa')
+            return redirect('registro_medico')
+        
+
+        except Exception as e:
+            messages.error(request, 'No existen registro médicos disponibles')
+            return render(request, 'RRHH/crear_registro_medico.html')
+    
+    trabajadores = Trabajador.objects.all()
+
+    if trabajadores:
+        return render(request, 'RRHH/crear_registro_medico.html', {'trabajadores':trabajadores})
+    
+    else:
+        messages.error(request, 'No existen rut disponibles')
+        return redirect('registro_medico')
+
+
+# Ver Registro médico
+class Ver_registro_medico(ListView):
+    model = RegistroMedico
+    template_name = 'RRHH/ver_registro_medico.html'
+    def get_queryset(self):
+        registros_medicos = RegistroMedico.objects.all()
+        return registros_medicos
+    
+    def get_context_data(self, **kwargs) :
+        context =  super().get_context_data(**kwargs)
+        context ['tittle'] = 'VerRegistroMedico'
+        context ['registros_medicos'] = self.get_queryset()
         return context

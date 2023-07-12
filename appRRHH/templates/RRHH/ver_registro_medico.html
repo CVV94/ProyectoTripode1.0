@@ -1,0 +1,31 @@
+{% extends 'base/index.html' %}
+{% block title %}VerRegistroMedico{% endblock %}
+
+{% load static %}
+
+{% block baseHtml %}
+ 
+{% if registros_medicos %}
+
+<table>
+    <tr><td>RUT: </td><td>Tipo de registro: </td><td>Fecha de ingreso:</td><td>Fecha de termino</td><td>Descargar registro médico: </td></tr>
+    
+
+
+
+{% for registro_medico in registros_medicos %}
+
+<tr><td>{{ registro_medico.rut }}</td><td>{{ registro_medico.tipo_registro_medico }}</td><td>{{ registro_medico.rm_fecha_ingreso }}</td><td>{{ registro_medico.rm_fecha_termino }}</td><td>{{ registro_medico.archivo_medico }}</td></tr>
+
+{% endfor %}
+
+</table>
+
+{% else %}
+
+<p> NO se encontró registro </p>
+
+{% endif %}
+
+
+{% endblock %}

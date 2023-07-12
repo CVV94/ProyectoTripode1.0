@@ -1,0 +1,31 @@
+{% extends 'base/index.html' %}
+{% block title %}VerLiquidacion{% endblock %}
+
+{% load static %}
+
+{% block baseHtml %}
+ 
+{% if liquidaciones %}
+
+<table>
+    <tr><td>RUT: </td><td>Mes de liquidación: </td><td>Descargar archivo de liquidación: </td></tr>
+    
+
+
+
+{% for liquidacion in liquidaciones %}
+
+<tr><td>{{ liquidacion.rut }}</td><td>{{ liquidacion.mes_liquidacion }}</td><td>{{ liquidacion.archivo_liquidacion }}</td></tr>
+
+{% endfor %}
+
+</table>
+
+{% else %}
+
+<p> NO se encontró registro </p>
+
+{% endif %}
+
+
+{% endblock %}
