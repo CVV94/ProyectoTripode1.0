@@ -5,29 +5,35 @@
 {% load static %}
 
 {% block baseHtml %}
-
+    <div class="row">
     <div class="container">
         <div class="title-crearArea">
             <h1>Ficha de trabajador</h1>
+            <h4>Creacion de Area</h4>
+        </div>
+        <div>
+
         </div>
         <div>
             <form method="POST" action="{% url 'fichaArea' %}" class="form-area">
                 {% csrf_token %}
 
                 <div class="nombre_area">
-                    <label for="nombre_area">Nombre de Area:</label>
-                    <input type="text" id="nombre_area" name="nombre_area" placeholder="Ingrese el Nombre del Area al que pertenece" >
+
+                    <input type="text" id="nombre_area" name="nombre_area" placeholder="Ingrese el Nombre Area" required >
                 </div>
 
                 <div class="login-btn">
                     <input type="submit" value="Registrar" class="d-grid gap-2 col-6 mx-auto btn-primary">
                 </div>
+                <div>
+                    <button class="d-grid gap-2 col-6 mx-auto btn-primary" onclick="location.href='{% url 'fichaDepartamento' %}'">Continuar Sin Crear Área</button>
+                </div>
             </form>
 
         </div>
-        <div>
-            <button onclick="location.href='{% url 'fichaDepartamento' %}'">Continuar Sin Crear Área</button>
-        </div>
+    </div>
+
     </div>
 
 

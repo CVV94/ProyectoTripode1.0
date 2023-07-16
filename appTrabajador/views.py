@@ -1,10 +1,7 @@
 from appDb.models import VacacionLicencia
 from appDb.models import Usuario
 from appDb.models import Trabajador
-from appDb.views import login_view
 from django.shortcuts import render
-
-
 
 
 def solicitud_licencia(request):
