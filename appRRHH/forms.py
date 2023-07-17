@@ -11,5 +11,5 @@ class LicenciaForm(ModelForm):
             'fecha_inicio': 'Fecha de Inicio',
         }
         widgets = {
-            'fecha_inicio': DateInput(attrs={'type': 'date'})
+            'fecha_inicio': DateInput(attrs={'type': 'date'}),
         }

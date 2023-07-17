@@ -3,27 +3,37 @@
 {% block title %}Ficha de Cargo{% endblock %}
 
 {% load static %}
+{% block linkPropios %}
+    <link rel="stylesheet" href="{% static 'appRRHH/css/fichaCargo.css' %}" type="text/css">
+{% endblock %}
 
 {% block baseHtml %}
-
-<h1>Ficha de trabajador</h1>
-<form method="POST" action="{% url 'fichaCargo' %}" class="fichaCargo">
-    {% csrf_token %}
-    <div>
-        <label for="id_departamento">Id Departamento:</label>
-        <select name="id_departamento" id="id_departamento">
-            {% for departamento in departamentos %}
-                <option value="{{departamento.id_departamento}}" {% if forloop.last %}selected{% endif %}>{{departamento.departamento}}</option>
-            {% endfor %}
-        </select>
+<div class="container">
+    <div class="title-cargo">
+        <h1>Ficha de trabajador</h1>
+        <h4>Creacion de Cargo</h4>
     </div>
-    <div>
-        <label for="nombre_cargo">Nombre del Cargo:</label>
-        <input type="text" id="nombre_cargo" name="nombre_cargo" placeholder="Ingrese el Nombre del Cargo que ocupara" required> 
-    </div>
-    <div class="login-btn">
-        <input type="submit" value="Registrar" class="d-grid gap-2 col-6 mx-auto btn-primary">
-    </div>
-</form>
-<button onclick="location.href='{% url 'fichaTrabajador' %}'">Continuar Sin Crear Cargo</button>
+    <form method="POST" action="{% url 'fichaCargo' %}" class="form-cargo">
+        {% csrf_token %}
+        <div class="id_departamento">
+            <label for="id_departamento">Id Departamento:</label>
+            <select name="id_departamento" id="id_departamento">
+                {% for departamento in departamentos %}
+                    <option value="{{departamento.id_departamento}}" {% if forloop.last %}selected{% endif %}>{{departamento.departamento}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="nombre_cargo">
+            <label for="nombre_cargo">Nombre del Cargo:</label>
+            <input type="text" id="nombre_cargo" name="nombre_cargo" placeholder="Ingrese el Nombre del Cargo que ocupara" required>
+        </div>
+        <br><br><br>
+        <div class="login-btn">
+            <input type="submit" value="Registrar" class="d-grid gap-2 col-6 mx-auto btn-primary">
+        </div>
+        <div>
+            <button class="d-grid gap-2 col-6 mx-auto btn-primary"  onclick="location.href='{% url 'fichaTrabajador' %}'">Continuar Sin Crear Cargo</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

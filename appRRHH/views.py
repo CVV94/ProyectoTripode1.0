@@ -43,6 +43,9 @@ class ListadoTrabajador(ListView):
         context['title'] = 'Listado de Trabajadores'
         context['trabajadores'] = self.get_queryset()
         return context
+    
+    
+    
 
 def fichaTrabajador(request):
     if request.method == 'POST':
@@ -108,8 +111,6 @@ def fichaDepartamento(request):
     else:
         messages.error(request, 'No existen áreas disponibles')
         return redirect('fichaDepartamento')
-
-
 
 def fichaCargo(request):
     if request.method == 'POST':

@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def hola(request):
-    return render(request,'paginas/hola.html')
+    return render(request,'base/hola.html')
 
 def registrarse(request):
     if request.method == 'POST':

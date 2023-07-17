@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.form-area {
+.form-cargo {
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
@@ -20,24 +20,21 @@
     background: linear-gradient(to right, #D4D3DD, #EFEFBB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
-
-
-.nombre_area{
-    display: flex;
-    justify-content:left;
-    align-items: center;
-    text-align: center;
+.id_departamento{
+   font-family: 'Londrina Shadow', cursive;
 
 }
-.nombre_area input{
+
+.nombre_cargo{
+    font-family: 'Londrina Shadow', cursive;
+    float: left;
+}
+.nombre_cargo input{
     border: none;
     border-bottom: 1px solid #ccc;
     outline: none;
     background-color: rgb(255, 255, 255);
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: 17rem;
+    width: 19rem;
     font-family: Arial;
     font-size: 15px;
     margin-bottom: 10px;
@@ -45,7 +42,7 @@
 }
 
 
-.title-crearArea {
+.title-cargo {
     margin-left: auto;
     margin-right: auto;
     margin-top: 80px;
@@ -63,7 +60,7 @@
 
 }
 
-.title-crearArea h1{
+.title-cargo h1{
     display: flex;
     justify-content: center;
 }
@@ -74,6 +71,8 @@
     font-family: 'Times New Roman', Times, serif;
 }
 .d-grid{
-    margin: 19px;
+    margin-top: 30px;
+
+
     font-family: 'Lilita One', cursive;
 }
