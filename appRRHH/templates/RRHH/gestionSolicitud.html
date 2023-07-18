@@ -1,27 +1,47 @@
 {% extends 'base/index.html' %}
 
-{% block title %}Ficha de Trabajador{% endblock %}
+{% block title %}Gestion de Solicitudes{% endblock %}
 
 {% load static %}
+{% block linkPropios %}
+    <link rel="stylesheet" href="{% static 'appRRHH/css/gestionSolicitud.css' %}" type="text/css">
+{% endblock %}
 
 {% block baseHtml %}
-
-<h1>{{ title }}</h1>
-<form method="post" action=".">
+<div class="title-gestionSolicitud">
+    <h1>{{ title }}</h1>
+</div>
+<form method="post" action="{% url 'solicitudes' %}" class="form-gestionSolicitud">
     {% csrf_token %}
-    <div>
+    <div class="form-inputs">
         <label for="id_rut">Rut</label>
             {{ form.rut }}
     </div>
-    <div>
+    <div class="form-inputs">
         <label for="tipo_solicitud">Tipo de Solicitud:</label>
             {{ form.tipo_solicitud }}
     </div>
-    <div>
+    <div class="form-inputs">
         <label for="fecha_inicio">Fecha de Inicio:</label>
         {{ form.fecha_inicio }}
     </div>
-    <input type="submit" value="submit">
+    <div class="form-inputs">
+        <label for="fecha_fin">Fecha de Término:</label>
+        {{ form.fecha_fin }}
+    </div>
+    <div class="form-inputs">
+        <label for="fecha_fin">Días:</label>
+        {{ form.dias }}
+    </div>
+
+    <div class="form-inputs">
+        <label for="estado">Estado:</label>
+        {{ form.estado}}
+    </div>
+    <div>
+        <input type="submit" value="Registrar" class="d-grid gap-2 col-6 mx-auto btn-primary">
+
+    </div>
 
     
 </form>

@@ -1,13 +1,15 @@
 from django.urls import path
 from appRRHH import views
-from appRRHH.views import ListadoTrabajador
+from appRRHH.views import listadotrabajador
 from appRRHH.views import GestionSolicitud
 from appRRHH.views import Ver_liquidacion
 from appRRHH.views import Ver_registro_medico
+from appRRHH.views import ListSolicitudes
 
 
 urlpatterns = [
-    path('visualizar/', ListadoTrabajador.as_view(), name='visualizar'),
+    path('visualizar/', listadotrabajador.as_view(), name='visualizar'),
+    path('list/solicitudes/', ListSolicitudes.as_view(), name='listSolicitud'),
     path('',views.moduloJefeRRHH,name='modulo_jefeRRHH'),
     path('moduloRRHH/',views.moduloRRHH,name='modulo_RRHH'),
     path('moduloTrabajador/',views.moduloTrabajador,name='modulo_trabajador'),
