@@ -56,8 +56,8 @@
                 </li>
                 <li class="nav-item">
                   {% if request.session.nombre_perfil == 'RR.HH' %}
-                  <a class="nav-link" href="{% url 'visualizar' %}">Listado de Trabajadores</a>
-                  <a class="nav-link" href="{% url 'listSolicitud' %}">Listado de Solicitudes</a>
+                  <a class="nav-link" href="{% url 'listTrabajadores' %}">Listado de Trabajadores</a>
+                  <a class="nav-link" href="{% url 'listSolicitudes' %}">Listado de Solicitudes</a>
                   <a class="nav-link" href="{% url 'fichaArea' %}">Ficha de Trabajador</a>
                   <a class="nav-link" href="{% url 'solicitudes' %}">Gestion de Solicitudes</a>
                   {% endif %}

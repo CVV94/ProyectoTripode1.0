@@ -16,3 +16,7 @@ class LicenciaForm(ModelForm):
             'estado': TextInput(attrs={'type': 'text'}),
 
         }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)               #self.instance.pk  sirve para objetos creados al inicio
+        if not self.instance.pk:                        #Solo cuando se crea la solicitud su estado sera por defecto "En Proceso"
+            self.fields['estado'].initial="En Proceso"

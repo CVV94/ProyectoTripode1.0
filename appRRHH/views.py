@@ -1,8 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.urls import reverse_lazy   #importacion para redireccionamientos de django con clases
+from django.urls import reverse_lazy   # importacion para redireccionamientos de django con clases
 from django.views.generic import CreateView
 from appRRHH.forms import LicenciaForm
 from appDb.models import Trabajador
@@ -15,24 +15,21 @@ from appDb.models import Liquidacion
 from appDb.models import RegistroMedico
 
 def moduloRRHH(request):
-    return render(request,'rrhh/modulorrhh.html') # redireccionar a la página del módulo de rrhh.
+    return render(request, 'RRHH/moduloRRHH.html')  # redireccionar a la página del módulo de rrhh.
 
 
 def moduloJefeRRHH(request):
-    return render(request,'rrhh/modulojeferrhh.html') # redireccionar a la página del módulo de jefe de rrhh.
+    return render(request,'RRHH/moduloJefeRRHH.html') # redireccionar a la página del módulo de jefe de rrhh.
 
 
 def moduloTrabajador(request):
-    return render(request,'rrhh/modulotrabajador.html') # redireccionar a la página del módulo de trabajador
-
-def prueba(request):
-    return render(request,'rrhh/prueba.html')
+    return render(request,'RRHH/moduloRRHH.html') # redireccionar a la página del módulo de trabajador
 
 
 login_required
 class listadotrabajador(ListView):
     model = Trabajador                                  #modelo con el que trabaja
-    template_name = 'rrhh/trabajadores.html'         #direccion template
+    template_name = 'RRHH/trabajadores.html'         #direccion template
 
     def get_queryset(self):                             #consultas de orm
         trabajadores = Trabajador.objects.select_related('id_cargo').values('rut', 'nombre', 'sexo', 'id_cargo__nombre_cargo')
@@ -47,7 +44,8 @@ class listadotrabajador(ListView):
 class ListSolicitudes(ListView):
     model = VacacionLicencia
     template_name = 'RRHH/list_solicitudes.html'
-
+    def dispatch(self, request, *args, **kwargs):           # Se usa para redireccionar
+        return super().dispatch(request, *args, **kwargs)
     def get_queryset(self):
         solicitudes = VacacionLicencia.objects.all()
         return solicitudes
@@ -61,8 +59,8 @@ class ListSolicitudes(ListView):
 class GestionSolicitud(CreateView):
     model = VacacionLicencia
     form_class= LicenciaForm
-    template_name = 'rrhh/gestionsolicitud.html'
-    success_url= reverse_lazy('apprrhh:crear_liquidacion')
+    template_name = 'RRHH/gestionsolicitud.html'
+    success_url = reverse_lazy('listSolicitudes')
 
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
@@ -112,7 +110,7 @@ def fichaArea(request):
         except Exception as e:
             messages.error(request, 'ocurrió un error al crear el área: {}'.format(str(e)))
             return render(request, 'rrhh/fichaarea.html')
-    return render(request, 'rrhh/fichaarea.html')
+    return render(request, 'RRHH/fichaarea.html')
 
 def fichaDepartamento(request):
     if request.method == 'post':
@@ -127,11 +125,11 @@ def fichaDepartamento(request):
             return redirect('fichacargo')
         except Exception as e:
             messages.error(request, 'ocurrió un error al crear el departamento: {}'.format(str(e)))
-            return render(request, 'rrhh/fichadepartamento.html')
+            return render(request, 'RRHH/fichadepartamento.html')
 
     areas = Area.objects.all()
     if areas:
-        return render(request, 'rrhh/fichadepartamento.html', {'areas': areas})
+        return render(request, 'RRHH/fichadepartamento.html', {'areas': areas})
     else:
         messages.error(request, 'no existen áreas disponibles')
         return redirect('fichadepartamento')
@@ -149,14 +147,14 @@ def fichaCargo(request):
             return redirect('fichatrabajador')
         except Exception as e:
             messages.error(request, 'ocurrió un error al crear el cargo: {}'.format(str(e)))
-            return render(request, 'rrhh/fichacargo.html')
-    departamentos = departamento.objects.all()
+            return render(request, 'RRHH/fichaCargo.html')
+    departamentos = Departamento.objects.all()
 
     if departamentos:
-        return render(request, 'rrhh/fichacargo.html', {'departamentos': departamentos})
+        return render(request, 'RRHH/fichaCargo.html', {'departamentos': departamentos})
     else:
         messages.error(request, 'no existen cargos disponibles')
-        return redirect('fichacargo')
+        return redirect('fichaCargo')
 
 
 # creacion de liquidaciones
@@ -176,12 +174,12 @@ def crear_liquidacion(request):
 
         except Exception as e:
             messages.error(request, 'no existen liquidaciones disponibles')
-            return render(request, 'rrhh/crear_liquidacion.html')
+            return render(request, 'RRHH/crear_liquidacion.html')
 
     trabajadores = Trabajador.objects.all()
 
     if trabajadores:
-        return render(request, 'rrhh/crear_liquidacion.html', {'trabajadores':trabajadores})
+        return render(request, 'RRHH/crear_liquidacion.html', {'trabajadores':trabajadores})
 
     else:
         messages.error(request, 'no existen rut disponibles')
@@ -202,10 +200,6 @@ class Ver_liquidacion(ListView):
         context ['liquidaciones'] = self.get_queryset()
         return context
 
-
-
-
-
 # creacion de registro médico
 def crear_registro_medico(request):
     if request.method == 'post':
@@ -225,12 +219,12 @@ def crear_registro_medico(request):
 
         except Exception as e:
             messages.error(request, 'no existen registro médicos disponibles')
-            return render(request, 'rrhh/crear_registro_medico.html')
+            return render(request, 'RRHH/crear_registro_medico.html')
 
     trabajadores = Trabajador.objects.all()
 
     if trabajadores:
-        return render(request, 'rrhh/crear_registro_medico.html', {'trabajadores':trabajadores})
+        return render(request, 'RRHH/crear_registro_medico.html', {'trabajadores':trabajadores})
 
     else:
         messages.error(request, 'no existen rut disponibles')
