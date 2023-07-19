@@ -3,10 +3,13 @@
 {% block title %}Listado de Solicitudes{% endblock %}
 
 {% load static %}
-<link rel="stylesheet" href="{% static 'appRRHH/css/listadoDeTrabajadores.css' %}">
+{% block linkPropios %}
+    <link rel="stylesheet" href="{% static 'appRRHH/css/listadoDeSolicitudes.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
 
-{% block head %}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+{% block dataTable-css %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
 {% endblock  %}
 
 {% block baseHtml %}
@@ -25,14 +28,15 @@
             <table id="datatable-programmers" >
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>id solicitud</th>
-                  <th>Rut</th>
-                  <th>Tipo de Solicitud</th>
-                  <th>Fecha Inicio</th>
-                  <th>Fecha de Termino</th>
-                  <th>Dias</th>
-                  <th>Estado</th>
+                  <th >#</th>
+                  <th >id solicitud</th>
+                  <th >Rut</th>
+                  <th >Tipo de Solicitud</th>
+                  <th >Fecha Inicio</th>
+                  <th >Fecha de Termino</th>
+                  <th >Dias</th>
+                  <th >Estado</th>
+                    <th>Ópciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -46,6 +50,9 @@
                   <td>{{ solicitud.fecha_fin }}</td>
                   <td>{{ solicitud.dias }}</td>
                   <td>{{ solicitud.estado }}</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary btn-xs"><i class="fa-solid fa-pen-to-square"> Editar</i></button>
+                    </td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -61,24 +68,17 @@
   {% endif %}
 {% endblock %}
 
-{% block extraScripts %}
-  {{ block.super }}
-  <!-- Enlaces a los archivos de Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+{% block bootstrap5-js %}
 {% endblock %}
 
 {% block dataTable %}
-  <!-- Data table.jquery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <!-- Data table.js -->
-  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
-  <!-- js propios -->
-  {% comment %} <script src="{% static 'appRRHH/js/index.js' %}"></script> {% endcomment %}
+        <!-- Data table.jquery -->
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <!-- Data table.js -->
+      <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+      <!-- js propios -->
+      {% comment %} <script src="{% static 'appRRHH/js/index.js' %}"></script> {% endcomment %}
 {% endblock %}
 
 {% block javascript %}
