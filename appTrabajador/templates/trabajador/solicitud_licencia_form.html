@@ -1,21 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Solicitud de Licencia</title>
-</head>
-<body>
-    <h1>Solicitud de Licencia</h1>
-    <form method="post" action="{% url 'solicitud_licencia' %}">
-        {% csrf_token %}
-        <label for="tipo_solicitud">Tipo de Solicitud:</label>
-        <input type="text" id="tipo_solicitud" name="tipo_solicitud"><br><br>
-        <label for="fecha_inicio">Fecha de Inicio:</label>
-        <input type="date" id="fecha_inicio" name="fecha_inicio"><br><br>
-        <label for="fecha_fin">Fecha de Fin:</label>
-        <input type="date" id="fecha_fin" name="fecha_fin"><br><br>
-        <label for="dias">Días:</label>
-        <input type="number" id="dias" name="dias"><br><br>
-        <input type="submit" value="Enviar Solicitud">
-    </form>
-</body>
-</html>
+{% extends 'base/index.html' %}
+
+{% load static %}
+{% block linkPropios %}
+    <link rel="stylesheet" href="{%  static 'appTrabajador/css/licenciaTrabajador.css'  %}">
+{% endblock %}
+
+{% block baseHtml %}
+    <div class="container">
+
+        <div>
+            <h1>Solicitud de Licencia</h1>
+        </div>
+        <form method="post" action="{% url 'solicitud_licencia' %}">
+            {% csrf_token %}
+            <div>
+                <label for="tipo_solicitud">Tipo de Solicitud:</label>
+                <input type="text" id="tipo_solicitud" name="tipo_solicitud"><br><br>
+            </div>
+            <div>
+                <label for="fecha_inicio">Fecha de Inicio:</label>
+                <input type="date" id="fecha_inicio" name="fecha_inicio"><br><br>
+            </div>
+            <div>
+                <label for="fecha_fin">Fecha de Fin:</label>
+                <input type="date" id="fecha_fin" name="fecha_fin"><br><br>
+            </div>
+            <div>
+                <label for="dias">Días:</label>
+                <input type="number" id="dias" name="dias"><br><br>
+            </div>
+            <div>
+                <input type="submit" value="Enviar Solicitud">
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
