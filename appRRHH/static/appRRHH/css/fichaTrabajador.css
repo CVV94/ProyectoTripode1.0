@@ -26,10 +26,10 @@
 
 }
 
-.nombre_trabajador{
+.trabajador{
     font-family: 'Londrina Shadow', cursive;
 }
-.nombre_trabajador input{
+.trabajador input{
     border: none;
     border-bottom: 1px solid #ccc;
     outline: none;

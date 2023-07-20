@@ -8,29 +8,29 @@
 {% block baseHtml %}
     <div class="container">
 
-        <div>
+        <div class="title-licencia">
             <h1>Solicitud de Licencia</h1>
         </div>
-        <form method="post" action="{% url 'solicitud_licencia' %}">
+        <form method="post" class="form-trabajador" action="{% url 'solicitud_licencia' %}">
             {% csrf_token %}
-            <div>
+            <div class="inputs-licencia">
                 <label for="tipo_solicitud">Tipo de Solicitud:</label>
                 <input type="text" id="tipo_solicitud" name="tipo_solicitud"><br><br>
             </div>
-            <div>
+            <div class="inputs-licencia">
                 <label for="fecha_inicio">Fecha de Inicio:</label>
                 <input type="date" id="fecha_inicio" name="fecha_inicio"><br><br>
             </div>
-            <div>
+            <div class="inputs-licencia">
                 <label for="fecha_fin">Fecha de Fin:</label>
                 <input type="date" id="fecha_fin" name="fecha_fin"><br><br>
             </div>
-            <div>
+            <div class="inputs-licencia">
                 <label for="dias">Días:</label>
                 <input type="number" id="dias" name="dias"><br><br>
             </div>
             <div>
-                <input type="submit" value="Enviar Solicitud">
+                <input type="submit" class="d-grid gap-2 col-6 mx-auto btn-primary" value="Enviar Solicitud">
             </div>
         </form>
     </div>

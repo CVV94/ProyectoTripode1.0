@@ -89,8 +89,12 @@ def login_view(request):
 
             if request.session['nombre_perfil'] == 'Trabajador':
                 return redirect('solicitud_licencia')
+            else:
+                request.session['nombre_perfil'] =='RRHH'
+                return redirect('modulo_RRHH')
 
-            return render(request, 'base/hola.html')
+            return render(request, 'trabajador/moduloTrabajador.html')
+
 
         except Usuario.DoesNotExist:
             messages.error(request, 'El nombre de usuario o la contraseña no son correctos.')
