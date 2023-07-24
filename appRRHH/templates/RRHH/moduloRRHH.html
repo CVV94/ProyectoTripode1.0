@@ -3,7 +3,10 @@
 
 {% load static %}
 
-<link rel="stylesheet" href="{% static './appDb/modulos.css' %}" type="text/css">
+    {% block linkPropios %}
+        <link rel="stylesheet" href="{% static '/appDb/css/modulos.css' %}" type="text/css">
+    {% endblock %}
+
 
 {% block baseHtml %}
 

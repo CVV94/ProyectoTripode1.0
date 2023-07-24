@@ -10,8 +10,8 @@ from django.contrib.auth.decorators import login_required
 
 
 
-def hola(request):
-    return render(request,'base/hola.html')
+def home(request):
+    return render(request, 'base/home.html')
 
 def registrarse(request):
     if request.method == 'POST':
@@ -88,9 +88,11 @@ def login_view(request):
             request.session['rut_trabajador'] = detalleTrabajador.rut  # Guardar el rut del trabajador
 
             if request.session['nombre_perfil'] == 'Trabajador':
-                return redirect('solicitud_licencia')
+                return redirect('modulo_trabajador')
+            elif request.session['nombre_perfil']== 'Administrador':
+                return redirect('home')
             else:
-                request.session['nombre_perfil'] =='RRHH'
+                request.session['nombre_perfil'] =='RR.HH'
                 return redirect('modulo_RRHH')
 
             return render(request, 'trabajador/moduloTrabajador.html')

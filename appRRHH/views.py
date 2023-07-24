@@ -59,7 +59,7 @@ class ListSolicitudes(ListView):
 class GestionSolicitud(CreateView):
     model = VacacionLicencia
     form_class= LicenciaForm
-    template_name = 'RRHH/gestionsolicitud.html'
+    template_name = 'RRHH/gestionSolicitud.html'
     success_url = reverse_lazy('listSolicitudes')
 
     def get_context_data(self, **kwargs):
@@ -70,81 +70,81 @@ class GestionSolicitud(CreateView):
 
 
 def fichaTrabajador(request):
-    if request.method == 'post':
-        rut = request.post.get('rut')
-        nombre = request.post.get('nombre')
-        sexo = request.post.get('sexo')
-        direccion = request.post.get('direccion')
-        telefono = request.post.get('telefono')
-        fecha_ingreso = request.post.get('fecha_ingreso')
-        id_cargo = request.post.get('id_cargo')
-        id_usuario = request.post.get('id_usuario')
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        nombre = request.POST.get('nombre')
+        sexo = request.POST.get('sexo')
+        direccion = request.POST.get('direccion')
+        telefono = request.POST.get('telefono')
+        fecha_ingreso = request.POST.get('fecha_ingreso')
+        id_cargo = request.POST.get('id_cargo')
+        id_usuario = request.POST.get('id_usuario')
 
         try:
             cargo = Cargo.objects.get(id_cargo=id_cargo)
             usuario = Usuario.objects.get(id_usuario=id_usuario)
             trabajador = Trabajador(rut=rut, nombre=nombre, sexo=sexo, direccion=direccion, telefono=telefono, fecha_ingreso=fecha_ingreso, id_cargo=cargo, id_usuario=usuario)
             trabajador.save()
-            return redirect('fichatrabajador')  # redireccionar a la misma página después de guardar
+            return redirect('fichaTrabajador')  # redireccionar a la misma página después de guardar
         except Exception as e:
             messages.error(request, 'ocurrió un error al crear la ficha del trabajador: {}'.format(str(e)))
-            return redirect('fichatrabajador')  # redireccionar a la misma página si ocurre una excepción
+            return redirect('fichaTrabajador')  # redireccionar a la misma página si ocurre una excepción
 
     cargos = Cargo.objects.all()
     usuarios = Usuario.objects.all()
 
     if cargos.exists() and usuarios.exists():  # usar 'and' en lugar de 'or'
-        return render(request, 'rrhh/fichatrabajador.html', {'cargos': cargos, 'usuarios': usuarios})
+        return render(request, 'RRHH/fichaTrabajador.html', {'cargos': cargos, 'usuarios': usuarios})
     else:
         messages.error(request, 'no existen cargos y usuarios disponibles')
-        return redirect('fichatrabajador')
+        return redirect('fichaTrabajador')
 
 def fichaArea(request):
-    if request.method == 'post':
-        id_area = request.post.get('id_area')
-        nombre_area = request.post.get('nombre_area')
+    if request.method == 'POST':
+        id_area = request.POST.get('id_area')
+        nombre_area = request.POST.get('nombre_area')
         try:
             area = Area(id_area=id_area, nombre_area=nombre_area)
             area.save()
-            return redirect('fichadepartamento') # redireccionar con el argumento id_area
+            return redirect('fichaDepartamento') # redireccionar con el argumento id_area
         except Exception as e:
             messages.error(request, 'ocurrió un error al crear el área: {}'.format(str(e)))
-            return render(request, 'rrhh/fichaarea.html')
-    return render(request, 'RRHH/fichaarea.html')
+            return render(request, 'RRHH/fichaArea.html')
+    return render(request, 'RRHH/fichaArea.html')
 
 def fichaDepartamento(request):
-    if request.method == 'post':
-        id_departamento = request.post.get('id_departamento')
-        id_area = request.post.get('id_area')  # corregir el nombre del campo a 'id_area'
-        departamento = request.post.get('departamento')
+    if request.method == 'POST':
+        id_departamento = request.POST.get('id_departamento')
+        id_area = request.POST.get('id_area')  # corregir el nombre del campo a 'id_area'
+        departamento = request.POST.get('departamento')
         try:
             area = Area.objects.get(id_area=id_area)
             departamento = Departamento(id_departamento=id_departamento, id_area=area, departamento=departamento)  # usar 'id_area' en lugar de 'area'
             departamento.save()
             messages.success(request, 'departamento creado exitosamente.')
-            return redirect('fichacargo')
+            return redirect('fichaCargo')
         except Exception as e:
             messages.error(request, 'ocurrió un error al crear el departamento: {}'.format(str(e)))
-            return render(request, 'RRHH/fichadepartamento.html')
+            return render(request, 'RRHH/fichaDepartamento.html')
 
     areas = Area.objects.all()
     if areas:
-        return render(request, 'RRHH/fichadepartamento.html', {'areas': areas})
+        return render(request, 'RRHH/fichaDepartamento.html', {'areas': areas})
     else:
         messages.error(request, 'no existen áreas disponibles')
-        return redirect('fichadepartamento')
+        return redirect('fichaDepartamento')
 
 def fichaCargo(request):
-    if request.method == 'post':
-        id_cargo=request.post.get('id_cargo')
-        id_departamento=request.post.get('id_departamento')
-        nombre_cargo=request.post.get('nombre_cargo')
+    if request.method == 'POST':
+        id_cargo=request.POST.get('id_cargo')
+        id_departamento=request.POST.get('id_departamento')
+        nombre_cargo=request.POST.get('nombre_cargo')
         try:
             departamento=Departamento.objects.get(id_departamento=id_departamento)
             cargo=Cargo(id_cargo=id_cargo,id_departamento=departamento,nombre_cargo=nombre_cargo)
             cargo.save()
             messages.success(request, 'cargo creado exitosamente.')
-            return redirect('fichatrabajador')
+            return redirect('fichaTrabajador')
         except Exception as e:
             messages.error(request, 'ocurrió un error al crear el cargo: {}'.format(str(e)))
             return render(request, 'RRHH/fichaCargo.html')
@@ -159,10 +159,10 @@ def fichaCargo(request):
 
 # creacion de liquidaciones
 def crear_liquidacion(request):
-    if request.method == 'post':
-        rut = request.post.get('rut')
-        mes_liquidacion = request.post.get('mes_liquidacion')
-        archivo_liquidacion = request.post.get('archivo_liquidacion')
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        mes_liquidacion = request.POST.get('mes_liquidacion')
+        archivo_liquidacion = request.POST.get('archivo_liquidacion')
 
         try:
             trabajador = Trabajador.objects.get(rut=rut)
@@ -202,12 +202,12 @@ class Ver_liquidacion(ListView):
 
 # creacion de registro médico
 def crear_registro_medico(request):
-    if request.method == 'post':
-        rut = request.post.get('rut')
-        tipo_registro = request.post.get('tipo_registro')
-        rm_fecha_ingreso = request.post.get('rm_fecha_ingreso')
-        rm_fecha_termino = request.post.get('rm_fecha_termino')
-        archivo_medico = request.post.get('archivo_medico')
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        tipo_registro = request.POST.get('tipo_registro')
+        rm_fecha_ingreso = request.POST.get('rm_fecha_ingreso')
+        rm_fecha_termino = request.POST.get('rm_fecha_termino')
+        archivo_medico = request.POST.get('archivo_medico')
 
         try:
             trabajador = Trabajador.objects.get(rut=rut)

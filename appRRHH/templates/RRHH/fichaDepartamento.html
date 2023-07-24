@@ -17,7 +17,7 @@
                     <label for="id_area" >Id Area:</label>
                     <select name="id_area" id="id_area" class="mx-auto">
                         {% for area in areas %}
-                            <option value="{{ area.id_area }}" {% if forloop.last %}selected{% endif %}>{{ area.id_area }}</option>
+                            <option value="{{ area.id_area }}" {% if forloop.last %}selected{% endif %}>{{ area.nombre_area }}</option>
                         {% endfor %}
                     </select>
                 </div>

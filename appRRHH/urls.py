@@ -11,7 +11,7 @@ from appRRHH.views import ListSolicitudes
 urlpatterns = [
     path('listTrabajadores/',listadotrabajador.as_view(), name='listTrabajadores'),
     path('listSolicitudes/',ListSolicitudes.as_view(), name='listSolicitudes'),
-    path('',views.moduloJefeRRHH,name='modulo_jefeRRHH'),
+    path('jefe',views.moduloJefeRRHH,name='modulo_jefeRRHH'),
     path('moduloRRHH/',views.moduloRRHH,name='modulo_RRHH'),
     path('moduloTrabajador/',views.moduloTrabajador,name='modulo_trabajador'),
     path('ficha/trabajador/',views.fichaTrabajador,name='fichaTrabajador'),
