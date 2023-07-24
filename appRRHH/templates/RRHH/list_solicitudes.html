@@ -50,9 +50,7 @@
                   <td>{{ solicitud.fecha_fin }}</td>
                   <td>{{ solicitud.dias }}</td>
                   <td>{{ solicitud.estado }}</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary btn-xs"><i class="fa-solid fa-pen-to-square"> Editar</i></button>
-                    </td>
+                    <td><a href="{% url 'edit_solicitud' pk=solicitud.id_solicitud %}" class="btn btn-secondary btn-xs"><i class="fa-solid fa-pen-to-square"></i> Editar</a></td>
                 </tr>
                 {% endfor %}
               </tbody>

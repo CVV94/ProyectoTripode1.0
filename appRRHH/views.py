@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse_lazy   # importacion para redireccionamientos de django con clases
 from django.views.generic import CreateView
+from django.views.generic.edit import UpdateView
 from appRRHH.forms import LicenciaForm
 from appDb.models import Trabajador
 from appDb.models import Cargo
@@ -66,7 +67,12 @@ class GestionSolicitud(CreateView):
         context= super().get_context_data(**kwargs)
         context['title'] = 'gestion de solicitudes'
         return context
-    
+
+class EditSolicitud(UpdateView):
+    model = VacacionLicencia
+    form_class = LicenciaForm
+    template_name = 'RRHH/edit_solicitud.html'
+    success_url = reverse_lazy('listSolicitudes')
 
 
 def fichaTrabajador(request):
@@ -244,3 +250,4 @@ class Ver_registro_medico(ListView):
         context ['tittle'] = 'verregistromedico'
         context ['registros_medicos'] = self.get_queryset()
         return context
+

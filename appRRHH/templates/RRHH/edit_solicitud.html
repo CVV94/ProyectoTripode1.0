@@ -1,0 +1,29 @@
+{% extends 'base/index.html' %}
+
+{% block title %}Editar Solicitud{% endblock %}
+
+{% block linkPropios %}
+    <!-- Agrega aquí tus enlaces de CSS personalizados si los tienes -->
+{% endblock %}
+
+{% block baseHtml %}
+  {% if request.session.nombre_usuario and request.session.nombre_perfil == 'RR.HH' %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <br><br>
+        <div class="formulario-solicitud">
+          <div class="title-formulario-solicitud">
+            <h1>{{ title }}</h1>
+          </div>
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}

@@ -30,7 +30,7 @@ class AtorizacionPermiso(models.Model):
         managed = False
         db_table = 'atorizacion_permiso'
     def __str__(self) -> str:
-        return self.rut, self.vehiculo, self.autorizacion_inicio,self.autorizacion_fin
+        return self.rut
 
 
 class CargaFamiliar(models.Model):
@@ -157,6 +157,8 @@ class Trabajador(models.Model):
     class Meta:
         managed = False
         db_table = 'trabajador'
+    def __str__(self):
+        return f'{self.rut}'
 
 
 class Usuario(models.Model):
@@ -184,3 +186,5 @@ class VacacionLicencia(models.Model):
     class Meta:
         managed = False
         db_table = 'vacacion_licencia'
+    def __str__(self):
+        return f'{self.rut}'
