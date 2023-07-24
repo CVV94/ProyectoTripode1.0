@@ -1,6 +1,6 @@
 from typing import Any, Dict
 from django.db.models.query import QuerySet
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Usuario
 from .models import Trabajador
@@ -79,7 +79,7 @@ def login_view(request):
     if request.method == 'POST':
         nombre_usuario = request.POST['nombre_usuario']
         password = request.POST['password']
-        
+
         try:
             detalleUsuario = Usuario.objects.get(nombre_usuario=nombre_usuario, password=password)
             detalleTrabajador = Trabajador.objects.get(id_usuario=detalleUsuario)
@@ -89,18 +89,14 @@ def login_view(request):
 
             if request.session['nombre_perfil'] == 'Trabajador':
                 return redirect('modulo_trabajador')
-            elif request.session['nombre_perfil']== 'Administrador':
+            elif request.session['nombre_perfil'] == 'Administrador':
                 return redirect('home')
             else:
-                request.session['nombre_perfil'] =='RR.HH'
                 return redirect('modulo_RRHH')
-
-            return render(request, 'trabajador/moduloTrabajador.html')
-
 
         except Usuario.DoesNotExist:
             messages.error(request, 'El nombre de usuario o la contraseña no son correctos.')
-    
+
     return render(request, 'base/login.html')
 
 

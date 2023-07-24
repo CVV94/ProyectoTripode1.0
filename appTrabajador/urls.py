@@ -8,5 +8,5 @@ from appTrabajador import views
 
 urlpatterns = [
     path('solicitud-licencia/',views.solicitud_licencia, name='solicitud_licencia'),
-    path('modulo/trabajador/',views.modulo_trabajador, name='modulo_trabajador'),
+    path('modulo/trabajador/',views.modulo_Trabajador, name='modulo_trabajador'),
 ]
