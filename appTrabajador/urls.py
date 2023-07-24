@@ -1,7 +1,6 @@
 from django.urls import path
-from django.contrib.auth import views as auth_views
 from appTrabajador import views
-
+# from appTrabajador.views import ListSolicitudes
 
 
 # from django.views.generic import TemplateView
@@ -9,4 +8,5 @@ from appTrabajador import views
 urlpatterns = [
     path('solicitud-licencia/',views.solicitud_licencia, name='solicitud_licencia'),
     path('modulo/trabajador/',views.modulo_Trabajador, name='modulo_trabajador'),
+    path('listado/licencias/',views.misSolicitudes, name='listaLicencias'),
 ]

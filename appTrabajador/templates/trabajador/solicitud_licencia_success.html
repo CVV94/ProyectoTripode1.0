@@ -1,0 +1,101 @@
+{% extends 'base/index.html' %}
+
+{% block title %}Listado de Solicitudes{% endblock %}
+
+{% load static %}
+{% block linkPropios %}
+    <link rel="stylesheet" href="{% static 'appRRHH/css/listadoDeSolicitudes.css' %}">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block dataTable-css %}
+    <link rel="stylesheet" href=" https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+{% endblock  %}
+
+{% block baseHtml %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+        <br><br>
+        <div class="listado">
+          <div class="title-listado-trabajador">
+            <h1>{{ title }}</h1>
+          </div>
+          <div class="table-responsive">
+            {% if solicitudes %}
+            <table id="datatable-programmers" >
+              <thead>
+                <tr>
+                  <th >#</th>
+                  <th >id solicitud</th>
+                  <th >Rut</th>
+                  <th >Tipo de Solicitud</th>
+                  <th >Fecha Inicio</th>
+                  <th >Fecha de Termino</th>
+                  <th >Dias</th>
+                  <th >Estado</th>
+                    <th>Ópciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for solicitud in solicitudes %}
+                <tr>
+                  <th>{{ forloop.counter }}</th>
+                  <td>{{ solicitud.id_solicitud }}</td>
+                  <td>{{ solicitud.rut }}</td>
+                  <td>{{ solicitud.tipo_solicitud }}</td>
+                  <td>{{ solicitud.fecha_inicio }}</td>
+                  <td>{{ solicitud.fecha_fin }}</td>
+                  <td>{{ solicitud.dias }}</td>
+                  <td>{{ solicitud.estado }}</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary btn-xs"><i class="fa-solid fa-pen-to-square"> Editar</i></button>
+                    </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <p>No se encontraron Solicitudes.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+{% block dataTable %}
+        <!-- Data table.jquery -->
+      <script src=" https://code.jquery.com/jquery-3.5.1.js"></script>
+      <!-- Data table.js -->
+      <script src=" https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+      <script src=" https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+      <!-- js propios -->
+      {% comment %} <script src="{% static 'appRRHH/js/index.js' %}"></script> {% endcomment %}
+{% endblock %}
+
+{% block javascript %}
+  <script type="application/javascript">
+    $(document).ready(function(){
+      new DataTable('#datatable-programmers', {
+        responsive: true,
+        "language": {
+          "lengthMenu":"Cantidad de Items _MENU_ por Página",
+          "search": "Buscar:",
+          "info":"Pagina _START_ - _END_ de _TOTAL_ entradas",
+          "infoEmpty": "Mostrando 0 to 0 de 0 entradas",
+          "paginate": {
+            "last": "Ultima pagina",
+            "previous": "Anterior",
+            "next": "Siguiente",
+          }
+        }
+      });
+    });
+  </script>
+{% endblock %}
