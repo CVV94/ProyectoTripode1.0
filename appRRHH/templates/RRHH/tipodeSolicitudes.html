@@ -1,0 +1,63 @@
+{% extends 'base/index.html' %}
+
+{% block title %}Seleccion de Solicitudes{% endblock %}
+
+{% load static %}
+{% block linkPropios %}
+    <link rel="stylesheet" href="{% static 'appRRHH/css/tipoSolicitud.css' %}">
+{% endblock %}
+
+
+{% block baseHtml %}
+  {% if request.session.nombre_usuario and request.session.nombre_perfil == 'RR.HH' %}
+    <div class="container">
+
+       <h1>Gestion de Solicitudes</h1>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">Solicitudes Pendientes</h5>
+                <img src="{% static './appRRHH/img/solicitudes.png' %}" alt="imagen">
+                <a href={% url 'listSolicitudes' %} class="btn btn-primary">Entrar</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Registro de Solicitudes</h5>
+                <img src="{% static './appRRHH/img/registroSolicitudes.png' %}" alt="imagen">
+                <a href={% url 'SolicitudesGestionadas' %} class="btn btn-primary">Visualizar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% endif %}
+{% endblock %}
+
+{% block bootstrap5-js %}
+{% endblock %}
+

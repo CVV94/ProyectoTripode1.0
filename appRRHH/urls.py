@@ -5,12 +5,18 @@ from appRRHH.views import GestionSolicitud
 from appRRHH.views import Ver_liquidacion
 from appRRHH.views import Ver_registro_medico
 from appRRHH.views import ListSolicitudes
+from appRRHH.views import SolicitudesGestionadas
 from appRRHH.views import EditSolicitud
 
 
 urlpatterns = [
     path('listTrabajadores/',listadotrabajador.as_view(), name='listTrabajadores'),
+
     path('listSolicitudes/',ListSolicitudes.as_view(), name='listSolicitudes'),
+    path('listSolicitudes/gestionadas/',SolicitudesGestionadas.as_view(), name='SolicitudesGestionadas'),
+
+    path('seleccion/Solicitud/',views.tipoDeSolicitudes,name='seleccionSolicitud'),
+
     path('jefe',views.moduloJefeRRHH,name='modulo_jefeRRHH'),
     path('moduloRRHH/',views.moduloRRHH,name='modulo_RRHH'),
     path('moduloTrabajador/',views.moduloTrabajador,name='modulo_trabajador'),

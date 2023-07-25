@@ -1,6 +1,6 @@
 {% extends 'base/index.html' %}
 
-{% block title %}Listado de Solicitudes Pendientes{% endblock %}
+{% block title %}Listado de Solicitudes Gestionadas{% endblock %}
 
 {% load static %}
 {% block linkPropios %}
@@ -19,7 +19,6 @@
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
         <br><br>
-
         <div class="listado">
           <div class="title-solicitudes">
             <h1>{{ title }}</h1>
@@ -37,7 +36,6 @@
                   <th >Fecha de Termino</th>
                   <th >Dias</th>
                   <th >Estado</th>
-                    <th>Ópciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,7 +49,6 @@
                   <td>{{ solicitud.fecha_fin }}</td>
                   <td>{{ solicitud.dias }}</td>
                   <td>{{ solicitud.estado }}</td>
-                    <td><a href="{% url 'edit_solicitud' pk=solicitud.id_solicitud %}" class="btn btn-secondary btn-xs"><i class="fa-solid fa-pen-to-square"></i> Editar</a></td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -64,13 +61,11 @@
       </div>
     </div>
       <br>
-    <div>
-        <a href={% url 'seleccionSolicitud' %} class='btn btn-primary' >Volver</a>
-        <a href={% url 'SolicitudesGestionadas' %} class='btn btn-primary' >Visualizar Solicitudes Gestionadas </a>
+        <div>
+            <a href={% url 'seleccionSolicitud' %} class='btn btn-primary' >Volver</a>
+            <a href={% url 'listSolicitudes' %} class='btn btn-primary' >Visualizar Solicitudes Pendientes </a>
 
-    </div>
-
-
+        </div>
   </div>
   {% endif %}
 {% endblock %}
