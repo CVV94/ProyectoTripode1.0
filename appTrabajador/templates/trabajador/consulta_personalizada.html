@@ -81,6 +81,12 @@
 
         <!-- Enlace para editar información -->
         <a href="{% url 'editar_informacion_personal' result.trabajador.rut %}" class="btn btn-primary">Editar Información</a>
+
+                <!-- Agregar nueva Carga Familiar -->
+        <a href="{% url 'agregar_carga_familiar' %}">Agregar Carga Familiar</a>
+
+        <!-- Agregar nuevo Contacto de Emergencia -->
+        <a href="{% url 'agregar_contacto_emergencia' %}">Agregar Contacto de Emergencia</a>
     {% else %}
         <h1>No se encontraron datos para el trabajador</h1>
     {% endif %}

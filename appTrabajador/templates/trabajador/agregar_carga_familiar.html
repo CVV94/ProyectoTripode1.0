@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar Carga Familiar</title>
+</head>
+<body>
+    <h1>Agregar Carga Familiar</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="cf_nombre">Nombre:</label>
+        <input type="text" id="cf_nombre" name="cf_nombre" required>
+        <br>
+        <label for="cf_parentesco">Parentesco:</label>
+        <input type="text" id="cf_parentesco" name="cf_parentesco" required>
+        <br>
+        <label for="cf_sexo">Sexo:</label>
+        <select id="cf_sexo" name="cf_sexo">
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
+        </select>
+        <br>
+        <button type="submit">Agregar Carga Familiar</button>
+    </form>
+</body>
+</html>

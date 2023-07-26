@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar Contacto de Emergencia</title>
+</head>
+<body>
+    <h1>Agregar Contacto de Emergencia</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="ce_nombre">Nombre:</label>
+        <input type="text" id="ce_nombre" name="ce_nombre" required>
+        <br>
+        <label for="ce_relacion">Relación con el Trabajador:</label>
+        <input type="text" id="ce_relacion" name="ce_relacion" required>
+        <br>
+        <label for="ce_telefono">Teléfono:</label>
+        <input type="text" id="ce_telefono" name="ce_telefono" required>
+        <br>
+        <button type="submit">Agregar Contacto de Emergencia</button>
+    </form>
+</body>
+</html>

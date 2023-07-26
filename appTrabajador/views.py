@@ -1,11 +1,14 @@
 from appDb.models import VacacionLicencia
 from appDb.models import Usuario
 from appDb.models import Trabajador
+from appDb.models import CargaFamiliar
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from appDb.views import login_view
 from django.contrib.auth.mixins import LoginRequiredMixin
 from appRRHH.forms import *
+from django.http import HttpResponse, Http404
+
 def solicitud_licencia(request):
     if request.method == 'POST':
         # Obtener los datos enviados por el formulario de solicitud de licencia
@@ -115,3 +118,51 @@ def editar_informacion_personal(request, rut_trabajador):
         return redirect('consulta_personalizada')  # Cambia 'ruta_de_vista_de_consulta_personalizada' por la vista de consulta personalizada que creaste
 
     return render(request, 'trabajador/editar_informacion_personal.html', {'trabajador': trabajador})
+
+def get_trabajador_actual(request):
+    # Obtenemos el 'rut_trabajador' del usuario desde la sesión
+    rut_trabajador = request.session.get('rut_trabajador', None)
+    
+    # Verificar si el 'rut_trabajador' está presente en la sesión
+    if rut_trabajador:
+        # Intentar obtener el objeto Trabajador correspondiente al 'rut_trabajador' de la base de datos
+        try:
+            trabajador = Trabajador.objects.get(rut=rut_trabajador)
+            return trabajador
+        except Trabajador.DoesNotExist:
+            # Manejo del caso donde el trabajador no existe
+            raise Http404("El trabajador no existe.")
+    
+    # Si no se encuentra el 'rut_trabajador' en la sesión, redirigir a la página de inicio de sesión o mostrar un error.
+    # Por ejemplo:
+    # return redirect('ruta_de_vista_de_inicio_de_sesion')
+    # o
+    # raise Http404("El 'rut_trabajador' no está presente en la sesión.")
+
+
+def agregar_carga_familiar(request):
+    if request.method == 'POST':
+        # Procesar el formulario enviado por el usuario para agregar la Carga Familiar
+        cf_nombre = request.POST.get('cf_nombre', '')
+        cf_parentesco = request.POST.get('cf_parentesco', '')
+        cf_sexo = request.POST.get('cf_sexo', '')
+
+        if cf_nombre and cf_parentesco and cf_sexo:  # Asegurarse de que los campos no estén vacíos
+            trabajador = get_trabajador_actual(request)  # Implementa esta función para obtener el trabajador actual
+            trabajador.cargafamiliar_set.create(cf_nombre=cf_nombre, parentesco=cf_parentesco, cf_sexo=cf_sexo)
+            return redirect('consulta_personalizada')  # Redirigir al usuario a la vista de consulta personalizada
+
+    return render(request, 'trabajador/agregar_carga_familiar.html')
+def agregar_contacto_emergencia(request):
+    if request.method == 'POST':
+        # Procesar el formulario enviado por el usuario para agregar el Contacto de Emergencia
+        ce_nombre = request.POST.get('ce_nombre', '')
+        ce_relacion = request.POST.get('ce_relacion', '')
+        ce_telefono = request.POST.get('ce_telefono', '')
+
+        if ce_nombre and ce_relacion and ce_telefono:  # Asegurarse de que los campos no estén vacíos
+            trabajador = get_trabajador_actual(request)  # Implementa esta función para obtener el trabajador actual
+            trabajador.contactoemergencia_set.create(ce_nombre=ce_nombre, relacion_con_trabajador=ce_relacion, ce_telefono=ce_telefono)
+            return redirect('consulta_personalizada')  # Redirigir al usuario a la vista de consulta personalizada
+
+    return render(request, 'trabajador/agregar_contacto_emergencia.html')
