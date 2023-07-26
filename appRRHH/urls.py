@@ -6,6 +6,7 @@ from appRRHH.views import Ver_liquidacion
 from appRRHH.views import Ver_registro_medico
 from appRRHH.views import ListSolicitudes
 from appRRHH.views import EditSolicitud
+from appRRHH.views import Ver_evaluacion
 
 
 urlpatterns = [
@@ -24,6 +25,8 @@ urlpatterns = [
     path('crear_registro_medico/',views.crear_registro_medico,name='crear_registro_medico'),
     path('ver_registro_medico/',Ver_registro_medico.as_view(),name='ver_registro_medico'),
     path('solicitudes/<int:pk>/editar/', EditSolicitud.as_view(), name='edit_solicitud'),
+    path('crear_evaluacion/',views.crear_evaluacion,name='crear_evaluacion'),
+    path('ver_evaluacion/',Ver_evaluacion.as_view(),name='ver_evaluacion'),
 
 ]
 

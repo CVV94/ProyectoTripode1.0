@@ -1,0 +1,31 @@
+{% extends 'base/index.html' %}
+{% block title %}VerEvaluacion{% endblock %}
+
+{% load static %}
+
+{% block baseHtml %}
+ 
+{% if evaluaciones %}
+
+<table>
+    <tr><td>RUT: </td><td>Tipo evaluación: </td><td>Calificación: </td><td>Fecha evaluación: </td></tr>
+    
+
+
+
+{% for evaluacion in evaluaciones %}
+
+<tr><td>{{ evaluacion.rut }}</td><td>{{ evaluacion.tipo_evaluacion }}</td><td>{{ evaluacion.calificacion }}</td><td>{{ evaluacion.fecha_evaluacion }}</td></tr>
+
+{% endfor %}
+
+</table>
+
+{% else %}
+
+<p> NO se encontró registro </p>
+
+{% endif %}
+
+
+{% endblock %}

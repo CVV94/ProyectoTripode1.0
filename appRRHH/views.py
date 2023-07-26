@@ -14,6 +14,7 @@ from appDb.models import Area
 from appDb.models import VacacionLicencia
 from appDb.models import Liquidacion
 from appDb.models import RegistroMedico
+from appDb.models import EvaluacionDesempeno
 
 def moduloRRHH(request):
     return render(request, 'RRHH/moduloRRHH.html')  # redireccionar a la página del módulo de rrhh.
@@ -210,14 +211,14 @@ class Ver_liquidacion(ListView):
 def crear_registro_medico(request):
     if request.method == 'POST':
         rut = request.POST.get('rut')
-        tipo_registro = request.POST.get('tipo_registro')
+        tipo_registro_medico = request.POST.get('tipo_registro_medico')
         rm_fecha_ingreso = request.POST.get('rm_fecha_ingreso')
         rm_fecha_termino = request.POST.get('rm_fecha_termino')
         archivo_medico = request.POST.get('archivo_medico')
 
         try:
             trabajador = Trabajador.objects.get(rut=rut)
-            formulario = RegistroMedico(rut=trabajador, tipo_registro=tipo_registro, rm_fecha_ingreso=rm_fecha_ingreso, rm_fecha_termino=rm_fecha_termino, archivo_medico=archivo_medico)
+            formulario = RegistroMedico(rut=trabajador, tipo_registro_medico=tipo_registro_medico, rm_fecha_ingreso=rm_fecha_ingreso, rm_fecha_termino=rm_fecha_termino, archivo_medico=archivo_medico)
             formulario.save()
             messages.success(request, 'creación exitosa')
             return redirect('registro_medico')
@@ -251,3 +252,49 @@ class Ver_registro_medico(ListView):
         context ['registros_medicos'] = self.get_queryset()
         return context
 
+
+
+
+# Creacion evaluacion
+def crear_evaluacion(request):
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        tipo_evaluacion = request.POST.get('tipo_evaluacion')
+        calificacion = request.POST.get('calificacion')
+        fecha_evaluacion = request.POST.get('fecha_evaluacion')
+
+        try:
+            trabajador = Trabajador.objects.get(rut=rut)
+            formulario = EvaluacionDesempeno(rut=trabajador, tipo_evaluacion=tipo_evaluacion, calificacion=calificacion, fecha_evaluacion=fecha_evaluacion)
+            formulario.save()
+            messages.success(request, 'Creación exitosa')
+            return redirect('evaluacion')
+        
+
+        except Exception as e:
+            messages.error(request, 'No existen evaluaciones disponibles')
+            return render(request, 'RRHH/crear_evaluacion.html')
+    
+    trabajadores = Trabajador.objects.all()
+
+    if trabajadores:
+        return render(request, 'RRHH/crear_evaluacion.html', {'trabajadores':trabajadores})
+    
+    else:
+        messages.error(request, 'No existen rut disponibles')
+        return redirect('evaluacion')
+    
+
+# Ver Evaluación
+class Ver_evaluacion(ListView):
+    model = EvaluacionDesempeno
+    template_name = 'RRHH/ver_evaluacion.html'
+    def get_queryset(self):
+        evaluaciones = EvaluacionDesempeno.objects.all()
+        return evaluaciones
+    
+    def get_context_data(self, **kwargs) :
+        context =  super().get_context_data(**kwargs)
+        context ['tittle'] = 'VerEvaluaciones'
+        context ['evaluaciones'] = self.get_queryset()
+        return context
