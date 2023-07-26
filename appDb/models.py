@@ -5,6 +5,7 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+from typing import Any
 from django.db import models
 
 
@@ -29,8 +30,8 @@ class AtorizacionPermiso(models.Model):
     class Meta:
         managed = False
         db_table = 'atorizacion_permiso'
-    def __str__(self) -> str:
-        return self.rut
+    def __str__(self):
+        return f'"{self.rut}"'
 
 
 class CargaFamiliar(models.Model):
@@ -44,7 +45,7 @@ class CargaFamiliar(models.Model):
         managed = False
         db_table = 'carga_familiar'
     def __str__(self) -> str:
-        return self.cf_nombre, self.parentesco, self.cf_sexo 
+        return f'"{self.cf_nombre}", "{self.parentesco}", "{self.cf_sexo}"' 
 
 
 class Cargo(models.Model):
@@ -69,6 +70,8 @@ class ContactoEmergencia(models.Model):
     class Meta:
         managed = False
         db_table = 'contacto_emergencia'
+    def __str__(self):
+        return f'"{self.rut}"'
 
 
 class Contrato(models.Model):
@@ -82,6 +85,8 @@ class Contrato(models.Model):
     class Meta:
         managed = False
         db_table = 'contrato'
+    def __str__(self):
+        return f'"{self.rut}"'
 
 
 class Departamento(models.Model):
@@ -107,6 +112,8 @@ class EvaluacionDesempeno(models.Model):
     class Meta:
         managed = False
         db_table = 'evaluacion_desempeno'
+    def __str__(self):
+        return f'"{self.rut}"'
 
 
 class Liquidacion(models.Model):
@@ -118,7 +125,8 @@ class Liquidacion(models.Model):
     class Meta:
         managed = False
         db_table = 'liquidacion'
-
+    def __str__(self):
+        return f'"{self.rut}"'
 
 class Perfil(models.Model):
     id_perfil = models.AutoField(db_column='ID_PERFIL', primary_key=True)  # Field name made lowercase.
@@ -145,6 +153,8 @@ class RegistroMedico(models.Model):
     class Meta:
         managed = False
         db_table = 'registro_medico'
+    def __str__(self):
+        return f'"{self.rut}"'
 
 
 class Trabajador(models.Model):
@@ -161,7 +171,7 @@ class Trabajador(models.Model):
         managed = False
         db_table = 'trabajador'
     def __str__(self):
-        return f'{self.rut}'
+        return f'"{self.rut}"'
 
 
 class Usuario(models.Model):
@@ -190,4 +200,4 @@ class VacacionLicencia(models.Model):
         managed = False
         db_table = 'vacacion_licencia'
     def __str__(self):
-        return f'{self.rut}'
+        return f'"{self.rut}"'
