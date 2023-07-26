@@ -1,0 +1,62 @@
+{% extends 'base/index.html' %}
+{% block title %}FiltroDeTrabajadores{% endblock %}
+
+
+{% load static %}
+
+{% block baseHtml %}
+
+<body>
+    <h1>Filtro de Trabajadores</h1>
+
+    <form method="get" action="{% url 'filtro_trabajadores' %}">
+        <label for="sexo">Sexo:</label>
+        <select name="sexo" id="sexo">
+            <option value="">Todos</option>
+            {% for sexo in sexos %}
+                <option value="{{ sexo }}" {% if sexo == filtro_sexo %}selected{% endif %}>{{ sexo }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="cargo">Cargo:</label>
+        <select name="cargo" id="cargo">
+            <option value="">Todos</option>
+            {% for cargo in cargos %}
+                <option value="{{ cargo.nombre_cargo }}" {% if cargo.nombre_cargo == filtro_cargo %}selected{% endif %}>{{ cargo.nombre_cargo }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="area">Área:</label>
+        <select name="area" id="area">
+            <option value="">Todos</option>
+            {% for area in areas %}
+                <option value="{{ area.nombre_area }}" {% if area.nombre_area == filtro_area %}selected{% endif %}>{{ area.nombre_area }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="departamento">Departamento:</label>
+        <select name="departamento" id="departamento">
+            <option value="">Todos</option>
+            {% for departamento in departamentos %}
+                <option value="{{ departamento.departamento }}" {% if departamento.departamento == filtro_departamento %}selected{% endif %}>{{ departamento.departamento }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Filtrar">
+    </form>
+
+    <h2>Resultados de búsqueda</h2>
+    <ul>
+        {% for trabajador in trabajadores_filtrados %}
+            <li>
+                <p>Nombre: {{ trabajador.nombre }}</p>
+                <p>Sexo: {{ trabajador.sexo }}</p>
+                <p>Cargo: {{ trabajador.cargo.nombre_cargo }}</p>
+                <p>Área: {{ trabajador.cargo.departamento.area.nombre_area }}</p>
+                <p>Departamento: {{ trabajador.cargo.departamento.departamento }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+
+{% endblock %}

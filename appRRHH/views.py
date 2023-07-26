@@ -317,3 +317,46 @@ class Ver_evaluacion(ListView):
         context ['tittle'] = 'VerEvaluaciones'
         context ['evaluaciones'] = self.get_queryset()
         return context
+    
+
+
+
+# Ver listado filtrado
+def filtro_trabajadores(request):
+    # Obtener los valores únicos de sexo, cargo, área y departamento para los filtros
+    sexos = Trabajador.objects.values_list('sexo', flat=True).distinct()
+    nombre_cargos = Cargo.objects.all()
+    departamentos = Departamento.objects.all()
+    nombre_areas = Area.objects.all()
+
+    # Obtener los parámetros de filtrado enviados por el formulario
+    filtro_sexo = request.GET.get('sexo')
+    filtro_cargo = request.GET.get('nombre_cargo')
+    filtro_departamento = request.GET.get('departamento')
+    filtro_area = request.GET.get('nombre_area')
+    
+
+    # Realizar la consulta para filtrar los trabajadores según los parámetros recibidos
+    trabajadores_filtrados = Trabajador.objects.filter(sexo=filtro_sexo)
+
+    if filtro_cargo:
+        trabajadores_filtrados = trabajadores_filtrados.filter(nombre_cargo__nombre_cargo=filtro_cargo)
+
+    if filtro_area:
+        trabajadores_filtrados = trabajadores_filtrados.filter(nombre_cargo__departamento__area__nombre_area=filtro_area)
+
+    if filtro_departamento:
+        trabajadores_filtrados = trabajadores_filtrados.filter(nombre_cargo__departamento__departamento=filtro_departamento)
+
+    # Renderizar el template de resultados de búsqueda y pasar los trabajadores filtrados y los filtros disponibles
+    return render(request, 'RRHH/filtro_trabajadores.html', {
+        'trabajadores_filtrados': trabajadores_filtrados,
+        'sexo': sexos,
+        'cargos': nombre_cargos,
+        'areas': nombre_areas,
+        'departamentos': departamentos,
+        'filtro_sexo': filtro_sexo,
+        'filtro_cargo': filtro_cargo,
+        'filtro_area': filtro_area,
+        'filtro_departamento': filtro_departamento,
+    })

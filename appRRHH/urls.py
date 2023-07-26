@@ -32,6 +32,7 @@ urlpatterns = [
     path('solicitudes/<int:pk>/editar/', EditSolicitud.as_view(), name='edit_solicitud'),
     path('crear_evaluacion/',views.crear_evaluacion,name='crear_evaluacion'),
     path('ver_evaluacion/',Ver_evaluacion.as_view(),name='ver_evaluacion'),
+    path('filtro_trabajadores/',views.filtro_trabajadores,name='filtro_trabajadores'),
 
 ]
 
