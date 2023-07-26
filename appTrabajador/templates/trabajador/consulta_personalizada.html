@@ -7,7 +7,7 @@
 {% block linkPropios %}
     <link rel="stylesheet" href="{% static 'appTrabajador/css/datosLaborales.css' %}" type="text/css">
 {% endblock %}
-
+{% load humanize %}
 {% block baseHtml %}
     <div class="container">
     {% if result.trabajador %}
@@ -27,7 +27,7 @@
                     <td>{{ result.trabajador.sexo }}</td>
                     <th>{{ result.trabajador.direccion }}</th>
                     <th>{{ result.trabajador.telefono }}</th>
-                    <th>{{ result.trabajador.fecha_ingreso }}</th>
+                    <th>{{ result.trabajador.fecha_ingreso|date:"d/m/Y" }}</th>
                 </tr>
             </tbody>
         </table>

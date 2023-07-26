@@ -15,4 +15,5 @@ urlpatterns = [
     path('agregar_contacto_emergencia/', views.agregar_contacto_emergencia, name='agregar_contacto_emergencia'),
     path('eliminar_carga_familiar/<str:rut_trabajador>/<int:carga_id>/', views.eliminar_carga_familiar, name='eliminar_carga_familiar'),
     path('eliminar_contacto_emergencia/<str:rut_trabajador>/<int:contacto_id>/', views.eliminar_contacto_emergencia, name='eliminar_contacto_emergencia'),
+    path('ver/liquidacion/',views.verLiquidacion, name='verLiquidaciones'),
 ]

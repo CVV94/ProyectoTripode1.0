@@ -3,6 +3,7 @@ from appDb.models import Usuario
 from appDb.models import Trabajador
 from appDb.models import CargaFamiliar
 from appDb.models import ContactoEmergencia
+from appDb.models import Liquidacion
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from appDb.views import login_view
@@ -190,3 +191,12 @@ def eliminar_contacto_emergencia(request, rut_trabajador, contacto_id):
         contacto_emergencia.delete()
 
     return redirect('consulta_personalizada')  # Reemplaza 'ruta_de_vista_de_consulta_personalizada' por la vista de consulta personalizada que utilizas
+
+def verLiquidacion(request):
+    # Obtenemos al trabajador actual utilizando la función get_trabajador_actual
+    trabajador_actual = get_trabajador_actual(request)
+
+    # Filtramos las liquidaciones para mostrar solo las del trabajador actual
+    liquidaciones = Liquidacion.objects.filter(rut=trabajador_actual.rut)
+
+    return render(request, 'trabajador/verLiquidacion.html', {'liquidaciones': liquidaciones})
