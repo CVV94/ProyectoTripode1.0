@@ -1,26 +1,27 @@
 from django.forms import *
 from appDb.models import VacacionLicencia
 
+
 class LicenciaForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field_name, field in self.fields.items():
+            html_id = f"id_{field_name}"  # Genera el id para el campo actual (por ejemplo, 'id_rut', 'id_tipo_solicitud', etc.)
+            field.widget.attrs['id'] = html_id
+
     class Meta:
         model = VacacionLicencia
-        fields= '__all__'
+        fields = '__all__'
         labels = {
             'rut': 'Rut',
             'tipo_solicitud': 'Tipo de Solicitud',
-            'fecha_inicio': 'Fecha de Inicio',
+            'fecha_inicio': 'Fecha de inicio',
+            # Agrega los demás campos y sus etiquetas aquí
         }
         widgets = {
             'fecha_inicio': DateInput(attrs={'type': 'date'}),
             'fecha_fin': DateInput(attrs={'type': 'date'}),
             'estado': TextInput(attrs={'type': 'text'}),
-
+            # Agrega los widgets para los demás campos aquí
         }
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)               #self.instance.pk  sirve para objetos creados al inicio}
-        for form in self.visible_fields():
-            # form.field.widget.attrs['class'] = 'form-control'
-            form.field.widget.attrs['autocomplete'] = 'off'
-            self.fields['rut'].widget.attrs['autofocus'] = True
-        if not self.instance.pk:                        #Solo cuando se crea la solicitud su estado sera por defecto "En Proceso"
-            self.fields['estado'].initial="En Proceso"
