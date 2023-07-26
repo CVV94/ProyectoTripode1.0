@@ -1,22 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Agregar Contacto de Emergencia</title>
-</head>
-<body>
-    <h1>Agregar Contacto de Emergencia</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="ce_nombre">Nombre:</label>
-        <input type="text" id="ce_nombre" name="ce_nombre" required>
-        <br>
-        <label for="ce_relacion">Relación con el Trabajador:</label>
-        <input type="text" id="ce_relacion" name="ce_relacion" required>
-        <br>
-        <label for="ce_telefono">Teléfono:</label>
-        <input type="text" id="ce_telefono" name="ce_telefono" required>
-        <br>
-        <button type="submit">Agregar Contacto de Emergencia</button>
-    </form>
-</body>
-</html>
+
+{% extends 'base/index.html' %}
+{% block title %}Agregar Carga Familiar{% endblock title %}
+
+{% load static %}
+
+<!-- Corrección en el enlace del CSS -->
+{% block linkPropios %}
+<link rel="stylesheet" href="{% static 'appTrabajador/css/agregarCargaFamiliar.css' %}" type="text/css">
+{% endblock %}
+
+{% block baseHtml %}
+<div class="container">
+    
+        <div class="tituloh1">
+            <h1>Agregar Contacto de Emergencia</h1>
+        </div>
+        <div class="form-edicion1">
+            <form method="post">
+                {% csrf_token %}
+                <label for="ce_nombre">Nombre:</label>
+                <input type="text" id="ce_nombre" name="ce_nombre" required>
+                <br>
+                <label for="ce_relacion">Relación con el Trabajador:</label>
+                <input type="text" id="ce_relacion" name="ce_relacion" required>
+                <br>
+                <label for="ce_telefono">Teléfono:</label>
+                <input type="text" id="ce_telefono" name="ce_telefono" required>
+                <br><br>
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+        </div>
+    
+    
+</div>
+{% endblock %}

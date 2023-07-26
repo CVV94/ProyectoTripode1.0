@@ -2,53 +2,66 @@
 {% block title %}Editar Información Personal{% endblock title %}
 
 {% load static %}
+{% block linkPropios %}
+    <link rel="stylesheet" href="{%  static 'appTrabajador/css/editarInformacionPersonal.css'  %}">
+{% endblock %}
 
-<link rel="stylesheet" href="{% static './listadoTrabajador/modulos.css' %}" type="text/css">
 
 {% block baseHtml %}
+<div class="container">
+    <div class="tituloh1">
+        <h1>Editar Información Personal</h1>
+    </div>
+      <form method="post" >
+          {% csrf_token %}
+          <div class="form-edicion1">
+              <label for="nombre">Nombre:</label>
+              <input type="text" id="nombre" name="nombre" value="{{ trabajador.nombre }}" required><br>
+      
+              <label for="sexo">Sexo:</label>
+              <input type="radio" id="sexo_masculino" name="sexo" value="M" {% if trabajador.sexo == 'M' %}checked{% endif %}>
+              <label for="sexo_masculino">Masculino</label>
+              <input type="radio" id="sexo_femenino" name="sexo" value="F" {% if trabajador.sexo == 'F' %}checked{% endif %}>
+              <label for="sexo_femenino">Femenino</label><br>
+      
+              <label for="direccion">Dirección:</label>
+              <input type="text" id="direccion" name="direccion" value="{{ trabajador.direccion }}" required><br>
+      
+              <label for="telefono">Teléfono:</label>
+              <input type="text" id="telefono" name="telefono" value="{{ trabajador.telefono }}" required><br>
+  
+          </div>
+          <div class="tituloh1">
+              <h1>Cargas Familiares:</h1>
+          </div>
+          <div class="form-edicion2">
+              <input type="number" name="num_cargas" value="{{ trabajador.cargafamiliar_set.count }}" hidden>
+              {% for carga in trabajador.cargafamiliar_set.all %}
+                  <label for="cf_nombre_{{ forloop.counter0 }}">Nombre:</label>
+                  <input type="text" id="cf_nombre_{{ forloop.counter0 }}" name="cf_nombre_{{ forloop.counter0 }}" value="{{ carga.cf_nombre }}" required><br>
+                  <label for="cf_parentesco_{{ forloop.counter0 }}">Parentesco:</label>
+                  <input type="text" id="cf_parentesco_{{ forloop.counter0 }}" name="cf_parentesco_{{ forloop.counter0 }}" value="{{ carga.parentesco }}" required><br>
+                  <label for="cf_sexo_{{ forloop.counter0 }}">Sexo:</label>
+                  <input type="text" id="cf_sexo_{{ forloop.counter0 }}" name="cf_sexo_{{ forloop.counter0 }}" value="{{ carga.cf_sexo }}" required><br>
+              {% endfor %}
+          </div>
+          <div class="tituloh1">
+              <h1>Contactos de Emergencia:</h1>
+          </div>
+          <div class="form-edicion3">
+              <input type="number" name="num_contactos" value="{{ trabajador.contactoemergencia_set.count }}" hidden>
+              {% for contacto in trabajador.contactoemergencia_set.all %}
+                  <label for="ce_nombre_{{ forloop.counter0 }}">Nombre:</label>
+                  <input type="text" id="ce_nombre_{{ forloop.counter0 }}" name="ce_nombre_{{ forloop.counter0 }}" value="{{ contacto.ce_nombre }}" required><br>
+                  <label for="ce_relacion_{{ forloop.counter0 }}">Relación:</label>
+                  <input type="text" id="ce_relacion_{{ forloop.counter0 }}" name="ce_relacion_{{ forloop.counter0 }}" value="{{ contacto.relacion_con_trabajador }}" required><br>
+                  <label for="ce_telefono_{{ forloop.counter0 }}">Teléfono:</label>
+                  <input type="text" id="ce_telefono_{{ forloop.counter0 }}" name="ce_telefono_{{ forloop.counter0 }}" value="{{ contacto.ce_telefono }}" required><br>
+              {% endfor %}
+                <br>
+              <input type="submit" value="Guardar Cambios" class="btn btn-primary">
 
-  <h1>Editar Información Personal</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" value="{{ trabajador.nombre }}"><br>
-
-        <label for="sexo">Sexo:</label>
-        <input type="radio" id="sexo_masculino" name="sexo" value="M" {% if trabajador.sexo == 'M' %}checked{% endif %}>
-        <label for="sexo_masculino">Masculino</label>
-        <input type="radio" id="sexo_femenino" name="sexo" value="F" {% if trabajador.sexo == 'F' %}checked{% endif %}>
-        <label for="sexo_femenino">Femenino</label><br>
-
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion" value="{{ trabajador.direccion }}"><br>
-
-        <label for="telefono">Teléfono:</label>
-        <input type="text" id="telefono" name="telefono" value="{{ trabajador.telefono }}"><br>
-
-
-
-        <h2>Cargas Familiares:</h2>
-        <input type="number" name="num_cargas" value="{{ trabajador.cargafamiliar_set.count }}" hidden>
-        {% for carga in trabajador.cargafamiliar_set.all %}
-            <label for="cf_nombre_{{ forloop.counter0 }}">Nombre:</label>
-            <input type="text" id="cf_nombre_{{ forloop.counter0 }}" name="cf_nombre_{{ forloop.counter0 }}" value="{{ carga.cf_nombre }}"><br>
-            <label for="cf_parentesco_{{ forloop.counter0 }}">Parentesco:</label>
-            <input type="text" id="cf_parentesco_{{ forloop.counter0 }}" name="cf_parentesco_{{ forloop.counter0 }}" value="{{ carga.parentesco }}"><br>
-            <label for="cf_sexo_{{ forloop.counter0 }}">Sexo:</label>
-            <input type="text" id="cf_sexo_{{ forloop.counter0 }}" name="cf_sexo_{{ forloop.counter0 }}" value="{{ carga.cf_sexo }}"><br>
-        {% endfor %}
-
-        <h2>Contactos de Emergencia:</h2>
-        <input type="number" name="num_contactos" value="{{ trabajador.contactoemergencia_set.count }}" hidden>
-        {% for contacto in trabajador.contactoemergencia_set.all %}
-            <label for="ce_nombre_{{ forloop.counter0 }}">Nombre:</label>
-            <input type="text" id="ce_nombre_{{ forloop.counter0 }}" name="ce_nombre_{{ forloop.counter0 }}" value="{{ contacto.ce_nombre }}"><br>
-            <label for="ce_relacion_{{ forloop.counter0 }}">Relación:</label>
-            <input type="text" id="ce_relacion_{{ forloop.counter0 }}" name="ce_relacion_{{ forloop.counter0 }}" value="{{ contacto.relacion_con_trabajador }}"><br>
-            <label for="ce_telefono_{{ forloop.counter0 }}">Teléfono:</label>
-            <input type="text" id="ce_telefono_{{ forloop.counter0 }}" name="ce_telefono_{{ forloop.counter0 }}" value="{{ contacto.ce_telefono }}"><br>
-        {% endfor %}
-
-        <input type="submit" value="Guardar Cambios">
-    </form>
+          </div>
+      </form>
+</div>
 {% endblock %}
