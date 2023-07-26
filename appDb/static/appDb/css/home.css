@@ -18,10 +18,16 @@
   
   /* Ajusta la posición vertical de los controles del carrusel */
   .carousel-control-prev {
-    margin-top: 370px; /* Ajusta este valor para mover el control hacia abajo */
+    margin-top: 500px; /* Ajusta este valor para mover el control hacia abajo */
   }
   
   .carousel-control-next {
-    margin-top: 370px; /* Ajusta este valor para mover el control hacia abajo */
+    margin-top: 500px; /* Ajusta este valor para mover el control hacia abajo */
   }
   
+  .saludo h1{
+    color: antiquewhite;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 80px;
+    text-align: center;
+  }
