@@ -1,0 +1,27 @@
+/* Agrega este CSS en el archivo appDb/css/home.css */
+.carousel-inner {
+    height: 900px; /* Ajusta la altura del carrusel según tus necesidades */
+    margin-top: 60px;
+  }
+  
+  .carousel-item img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Centra verticalmente los controles del carrusel */
+  .carousel-control-prev, .carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* Ajusta la posición vertical de los controles del carrusel */
+  .carousel-control-prev {
+    margin-top: 370px; /* Ajusta este valor para mover el control hacia abajo */
+  }
+  
+  .carousel-control-next {
+    margin-top: 370px; /* Ajusta este valor para mover el control hacia abajo */
+  }
+  
