@@ -93,6 +93,9 @@ class Departamento(models.Model):
         managed = False
         db_table = 'departamento'
 
+    def __str__(self) -> str:
+        return self.departamento
+
 
 class EvaluacionDesempeno(models.Model):
     id_evaluacion = models.AutoField(db_column='ID_EVALUACION', primary_key=True)  # Field name made lowercase.
