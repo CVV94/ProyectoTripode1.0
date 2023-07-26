@@ -2,12 +2,14 @@ from appDb.models import VacacionLicencia
 from appDb.models import Usuario
 from appDb.models import Trabajador
 from appDb.models import CargaFamiliar
+from appDb.models import ContactoEmergencia
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from appDb.views import login_view
 from django.contrib.auth.mixins import LoginRequiredMixin
 from appRRHH.forms import *
 from django.http import HttpResponse, Http404
+from django.shortcuts import get_object_or_404, redirect
 
 def solicitud_licencia(request):
     if request.method == 'POST':
@@ -153,6 +155,7 @@ def agregar_carga_familiar(request):
             return redirect('consulta_personalizada')  # Redirigir al usuario a la vista de consulta personalizada
 
     return render(request, 'trabajador/agregar_carga_familiar.html')
+
 def agregar_contacto_emergencia(request):
     if request.method == 'POST':
         # Procesar el formulario enviado por el usuario para agregar el Contacto de Emergencia
@@ -166,3 +169,24 @@ def agregar_contacto_emergencia(request):
             return redirect('consulta_personalizada')  # Redirigir al usuario a la vista de consulta personalizada
 
     return render(request, 'trabajador/agregar_contacto_emergencia.html')
+
+def eliminar_carga_familiar(request, rut_trabajador, carga_id):
+    trabajador = get_object_or_404(Trabajador, rut=rut_trabajador)
+    carga_familiar = get_object_or_404(CargaFamiliar, id_carga_familiar=carga_id)
+
+    # Verificar que la carga familiar pertenezca al trabajador antes de eliminarla
+    if carga_familiar in trabajador.cargafamiliar_set.all():
+        carga_familiar.delete()
+
+    return redirect('consulta_personalizada')  # Reemplaza 'ruta_de_vista_de_consulta_personalizada' por la vista de consulta personalizada que utilizas
+
+
+def eliminar_contacto_emergencia(request, rut_trabajador, contacto_id):
+    trabajador = get_object_or_404(Trabajador, rut=rut_trabajador)
+    contacto_emergencia = get_object_or_404(ContactoEmergencia, id_emergencia=contacto_id)
+
+    # Verificar que el contacto de emergencia pertenezca al trabajador antes de eliminarlo
+    if contacto_emergencia in trabajador.contactoemergencia_set.all():
+        contacto_emergencia.delete()
+
+    return redirect('consulta_personalizada')  # Reemplaza 'ruta_de_vista_de_consulta_personalizada' por la vista de consulta personalizada que utilizas

@@ -19,7 +19,6 @@
             <thead>
             <tr>
                 <th>Rut</th><th>Sexo</th><th>Dirección</th><th>Teléfono</th><th>Fecha de Ingreso</th>
-
             </tr>
             </thead>
             <tbody>
@@ -29,71 +28,80 @@
                     <th>{{ result.trabajador.direccion }}</th>
                     <th>{{ result.trabajador.telefono }}</th>
                     <th>{{ result.trabajador.fecha_ingreso }}</th>
-
                 </tr>
             </tbody>
         </table>
-
         </div>
         <div class="cargaFamiliar">
             <div class="datosLaboralesh1">
                 <h1>Cargas Familiares:</h1>
-
-            </div>
-                    <div class="datosLaborales">
-                        
-                        <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th><th>Parentesco</th><th>Sexo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for carga in result.cargas_familiares %}
-                            <tr>
-                                <td>{{ carga.cf_nombre }}</td><td>{{ carga.parentesco }}</td><td>{{ carga.cf_sexo }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-    
-                        </table>
-                    </div>
-
-
-        </div>
-        <div class="contactoEmergencia">
-            <div class="datosLaboralesh1">
-                <h1>Contactos de Emergencia:</h1>
-
             </div>
             <div class="datosLaborales">
                 <table class="table table-striped">
                     <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Relación</th>
-                        <th>Teléfono</th>
-                    </tr>
+                        <tr>
+                            <th>Nombre</th><th>Parentesco</th><th>Sexo</th><th>Acciones</th> <!-- Agregamos una columna para las acciones -->
+                        </tr>
                     </thead>
                     <tbody>
-                    {% for contacto in result.contactos_emergencia %}
-                    <tr>
-                        <td>{{ contacto.ce_nombre }}</td>
-                        <td>{{ contacto.relacion_con_trabajador }}</td>
-                        <td>{{ contacto.ce_telefono }}</td>
-                    </tr>
-                    {% endfor %}
+                        {% for carga in result.cargas_familiares %}
+                        <tr>
+                            <td>{{ carga.cf_nombre }}</td>
+                            <td>{{ carga.parentesco }}</td>
+                            <td>{{ carga.cf_sexo }}</td>
+                            <td>
+                                <!-- Botón para eliminar esta carga familiar -->
+                               
+                                <form method="post" action="{% url 'eliminar_carga_familiar' result.trabajador.rut carga.id_carga_familiar %}">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Eliminar" class="btn btn-danger">
+                                </form>
+                                
+                            </td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
-
             </div>
-
+        </div>
+        <div class="contactoEmergencia">
+            <div class="datosLaboralesh1">
+                <h1>Contactos de Emergencia:</h1>
+            </div>
+            <div class="datosLaborales">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Relación</th>
+                            <th>Teléfono</th>
+                            <th>Acciones</th> <!-- Agregamos una columna para las acciones -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contacto in result.contactos_emergencia %}
+                        <tr>
+                            <td>{{ contacto.ce_nombre }}</td>
+                            <td>{{ contacto.relacion_con_trabajador }}</td>
+                            <td>{{ contacto.ce_telefono }}</td>
+                            <td>
+                                <!-- Botón para eliminar este contacto de emergencia -->
+                                <form method="post" action="{% url 'eliminar_contacto_emergencia' result.trabajador.rut contacto.id_emergencia %}">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Eliminar" class="btn btn-danger">
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Enlace para editar información -->
         <a href="{% url 'editar_informacion_personal' result.trabajador.rut %}" class="btn btn-primary">Editar Información</a>
 
-                <!-- Agregar nueva Carga Familiar -->
+        <!-- Agregar nueva Carga Familiar -->
         <a href="{% url 'agregar_carga_familiar' %}" class="btn btn-primary">Agregar Carga Familiar</a>
 
         <!-- Agregar nuevo Contacto de Emergencia -->
@@ -101,8 +109,5 @@
     {% else %}
         <h1>No se encontraron datos para el trabajador</h1>
     {% endif %}
-
-
     </div>
-
 {% endblock %}
