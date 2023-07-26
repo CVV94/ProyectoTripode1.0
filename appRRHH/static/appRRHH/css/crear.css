@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.form-crear {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 35rem;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 10px;
+    padding: 20px;
+    max-height: 50rem;
+    height: 100%;
+    background: #EFEFBB;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D4D3DD, #EFEFBB);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #D4D3DD, #EFEFBB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.id_departamento{
+   font-family: 'Londrina Shadow', cursive;
+
+}
+
+.trabajador{
+    font-family: 'Londrina Shadow', cursive;
+}
+.trabajador input{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    width: 19rem;
+    font-family: Arial;
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-top: 35px;
+}
+
+
+.title-crear {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    max-width: 35rem;
+    font-family: 'Ultra', serif;
+    font-size: 23px;
+    padding: 20px;
+    background: #EFEFBB;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D4D3DD, #EFEFBB);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #D4D3DD, #EFEFBB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.title-trabajador h1,h4{
+    display: flex;
+    justify-content: center;
+}
+
+.errores{
+    font-size: small;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+.d-grid{
+    margin-top: 30px;
+
+
+    font-family: 'Lilita One', cursive;
+}

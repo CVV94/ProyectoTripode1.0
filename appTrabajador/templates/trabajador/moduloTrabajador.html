@@ -3,10 +3,12 @@
 
 {% load static %}
 
-<link rel="stylesheet" href="{% static './listadoTrabajador/modulos.css' %}" type="text/css">
+    {% block linkPropios %}
+        <link rel="stylesheet" href="{% static '/appDb/css/modulos.css' %}" type="text/css">
+    {% endblock %}
+
 
 {% block baseHtml %}
-
 
        <!-- Menu -->
     <section class="py-2 mt-3"  id="menu">
@@ -14,51 +16,41 @@
             <div class="row">
                 <div class="col">
                     <p class="h2 font-weight-light s-size text-center p-1">
-                        Trabajador
+                        TRABAJADOR
                     </p>
                     <p class="lead text-center">Perfil de Trabajador</p><hr class="bg-dark">
                 </div> 
             </div>
             <div class="card-columns">
                 <div class="card">
-                    <img src="{% static './listadoTrabajador/img/ediTrabajadores.jpg' %}" class="card-img-top">
+                    <img src="{% static './appDb/img/ediTrabajadores.jpg' %}" class="card-img-top">
                     <div class="card-body">
-                        <h3 class="h5 card-title">Editar Perfil</h3>
+                        <h3 class="h5 card-title">Editar Información</h3>
                         <p class="card-text">
-                            Modifica tus datos personales
+                            Modifica tus datos personales 
                         </p>
-                        <a href="{% url 'consulta_personalizada' %}" class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i>Ingresar</a>
+                        <a class="btn btn-outline-dark" href="{% url 'verLiquidaciones' %}">Ingresar</a>
                     </div>
                 </div>  
                 <div class="card">
-                    <img src="{% static './listadoTrabajador/img/crearTrabajador.JPG' %}" class="card-img-top">
+                    <img src="{% static './appDb/img/verTrabajadores.JPG' %}" class="card-img-top">
                     <div class="card-body">
-                        <h3 class="h5 card-title">Mi información</h3>
+                        <h3 class="h5 card-title">Liquidación</h3>
                         <p class="card-text">
-                            Visualiza tu información personal, documentos y certificados
+                            Visualiza tu liquidación
                         </p>
-                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
+                        <a class="btn btn-outline-dark" href="{% url 'verLiquidaciones' %}">Ingresar</a>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="{% static './listadoTrabajador/img/verTrabajadores.JPG' %}" class="card-img-top">
+                    <img src="{% static './appDb/img/action1.png' %}" class="card-img-top">
                     <div class="card-body">
-                        <h3 class="h5 card-title">Mi Desempeño</h3>
+                        <h3 class="h5 card-title">Gestionar Licencia</h3>
                         <p class="card-text">
-                            Visualiza tu desempeño laboral
+                            Visualiza el estado y solicita tus licencias
                         </p>
-                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="{% static './listadoTrabajador/img/verSolicitudes.png' %}" class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="h5 card-title">Mi Liquidación</h3>
-                        <p class="card-text">
-                            Visualiza los detalles de tu liquidación mensual
-                        </p>
-                        <a href="{% url 'verLiquidaciones' %}" class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i>Ingresar</a>
-                        
+                        <a class="btn btn-outline-dark" href="{% url 'solicitud_licencia' %}">Ingresar</a>
+                        <a class="btn btn-outline-dark" href="{% url 'listaLicencias' %}">Ver listado</a>
                     </div>
                 </div>
             </div>

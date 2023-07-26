@@ -20,10 +20,6 @@ def moduloRRHH(request):
     return render(request, 'RRHH/moduloRRHH.html')  # redireccionar a la página del módulo de rrhh.
 
 
-def moduloJefeRRHH(request):
-    return render(request,'RRHH/moduloJefeRRHH.html') # redireccionar a la página del módulo de jefe de rrhh.
-
-
 def moduloTrabajador(request):
     return render(request,'RRHH/moduloRRHH.html') # redireccionar a la página del módulo de trabajador
 

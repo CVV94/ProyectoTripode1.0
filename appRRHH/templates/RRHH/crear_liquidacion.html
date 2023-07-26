@@ -4,16 +4,19 @@
 {% load static %}
   <link rel="stylesheet" href="{% static 'appRRHH/css/formulario.css' %}" type="text/css">
 
-{% block head %}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
-{% endblock  %}
+{% block linkPropios %}
+  <link rel="stylesheet" href="{% static 'appRRHH/css/crear.css' %}" type="text/css">
+{% endblock %}
 
 {% block baseHtml %}
-  <div class="container">
+<div class="container">
+  <div class="title-crear">
+      <h1>Crear Liquidación</h1>
+  </div>
 
-    <form method="POST" action="{% url 'crear_liquidacion' %}">
+    <form method="POST" action="{% url 'crear_liquidacion' %}" class="form-crear">
     {% csrf_token %}
-    <div>
+    <div class="form-crear">
       <label for="rut">RUT: </label>
         <select name="rut" id="rut">
           {% for rut in trabajadores %}
@@ -22,19 +25,19 @@
         </select>
     </div>
 
-    <div>
+    <div class="form-crear">
       <label for="mes_liquidacion">Mes de liquidacion:</label>
       <input type="date" id="mes_liquidacion" name="mes_liquidacion" required><br>
     </div>
 
-    <div>  
+    <div class="form-crear">  
       <label for="archivo_liquidacion">Archivo de liquidacion:</label>
       <input type="file" id="archivo_liquidacion" name="archivo_liquidacion" required><br>
     </div>
 
 
 
-      <div class="text-center">
+      <div class="text-center" class="form-crear">
         <div class="d-inline-block">
           <button class="btn btn-primary" type="submit">Enviar</button>
         </div>

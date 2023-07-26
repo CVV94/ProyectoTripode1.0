@@ -7,7 +7,7 @@ from appTrabajador import views
 
 urlpatterns = [
     path('solicitud-licencia/',views.solicitud_licencia, name='solicitud_licencia'),
-    path('modulo/trabajador/',views.modulo_Trabajador, name='modulo_trabajador'),
+    path('moduloTrabajador/',views.moduloTrabajador, name='moduloTrabajador'),
     path('listado/licencias/',views.misSolicitudes, name='listaLicencias'),
     path('consulta/', views.consulta_personalizada, name='consulta_personalizada'),
     path('editar-informacion/<str:rut_trabajador>/',views.editar_informacion_personal, name='editar_informacion_personal'),

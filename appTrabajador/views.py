@@ -44,7 +44,7 @@ def solicitud_licencia(request):
 
     return render(request, 'trabajador/solicitud_licencia_form.html')
 
-def modulo_Trabajador(request):
+def moduloTrabajador(request):
     return render(request, 'trabajador/moduloTrabajador.html')
 
 

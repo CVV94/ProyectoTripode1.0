@@ -30,6 +30,7 @@
                             Visualiza la información de los trabajadores
                         </p>
                         <a class="btn btn-outline-dark" href="{% url 'listTrabajadores' %}">Ingresar</a>
+                        <a class="btn btn-outline-dark" href="{% url 'filtro_trabajadores' %}">Listado Filtrado</a>
                     </div>
                 </div>  
                 <div class="card">
@@ -39,7 +40,8 @@
                         <p class="card-text">
                             Ingresa, edita y visualiza solicitudes
                         </p>
-                        <a class="btn btn-outline-dark" href="{% url 'solicitudes' %}">Ingresar</a>
+                        <a class="btn btn-outline-dark" href="{% url 'solicitudes' %}">Ingresar Solicitud</a>
+                        <a class="btn btn-outline-dark" href="{% url 'listSolicitudes' %}">Ver Solicitudes</a>
                     </div>
                 </div>
                 <div class="card">
@@ -59,7 +61,8 @@
                         <p class="card-text">
                             Registra y visualiza registros médicos
                         </p>
-                        <a class="btn btn-outline-dark" href="{% url 'ver_registro_medico' %}">Ingresar</a>
+                        <a class="btn btn-outline-dark" href="{% url 'crear_registro_medico' %}">Ingresar Registros</a>
+                        <a class="btn btn-outline-dark" href="{% url 'ver_registro_medico' %}">Ver Registros</a>
                     </div>
                 </div>
                 <div class="card">
@@ -69,17 +72,19 @@
                         <p class="card-text">
                             Visualiza y crea registros de evaluaciones de desempeño 
                         </p>
-                        <a class="btn btn-outline-dark" href="{% url 'ver_evaluacion' %}">Ingresar</a>
+                        <a class="btn btn-outline-dark" href="{% url 'crear_evaluacion' %}">Ingresar Evaluación</a>
+                        <a class="btn btn-outline-dark" href="{% url 'ver_evaluacion' %}">Ver Evaluaciones</a>
                     </div>
                 </div>
                 <div class="card">
                     <img src="{% static './appDb/img/action2.png' %}" class="card-img-top">
                     <div class="card-body">
-                        <h3 class="h5 card-title">Gestionar Contratos</h3>
+                        <h3 class="h5 card-title">Gestionar Liquidaciones</h3>
                         <p class="card-text">
-                            Gestiona la información de los contratos y acuerdos laborales de los empleados
+                            Gestiona las liquidaciones de los empleados
                         </p>
-                        <a class="btn btn-outline-dark" href="{% url 'solicitudes' %}">Ingresar</a>
+                        <a class="btn btn-outline-dark" href="{% url 'crear_liquidacion' %}">Ingresar Liquidación</a>
+                        <a class="btn btn-outline-dark" href="{% url 'ver_ficha_liquidaciones' %}">Ver Liquidaciones</a>
                     </div>
                 </div>
             </div>

@@ -4,16 +4,19 @@
 {% load static %}
   <link rel="stylesheet" href="{% static 'appRRHH/css/formulario.css' %}" type="text/css">
 
-{% block head %}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
-{% endblock  %}
+{% block linkPropios %}
+  <link rel="stylesheet" href="{% static 'appRRHH/css/crear.css' %}" type="text/css">
+{% endblock %}
 
 {% block baseHtml %}
-  <div class="container">
+<div class="container">
+  <div class="title-crear">
+      <h1>Crear Evaluación</h1>
+  </div>
 
-    <form method="POST" action="{% url 'crear_evaluacion' %}">
+    <form method="POST" action="{% url 'crear_evaluacion' %}" class="form-crear">
     {% csrf_token %}
-    <div>
+    <div class="form-crear">
       <label for="rut">RUT: </label>
         <select name="rut" id="rut">
           {% for rut in trabajadores %}
@@ -22,24 +25,24 @@
         </select>
     </div>
 
-    <div>
+    <div class="form-crear">
       <label for="tipo_evaluacion">Tipo de evaluación:</label>
       <input type="text" id="tipo_evaluacion" name="tipo_evaluacion" required><br>
     </div>
 
-    <div>  
+    <div class="form-crear">  
       <label for="calificacion">Calificación:</label>
       <input type="text" id="calificacion" name="calificacion" required><br>
     </div>
 
-    <div>  
+    <div class="form-crear">  
         <label for="fecha_evaluacion">Fecha de evaluación:</label>
         <input type="date" id="fecha_evaluacion" name="fecha_evaluacion" required><br>
     </div>
 
 
 
-      <div class="text-center">
+      <div class="text-center" class="form-crear">
         <div class="d-inline-block">
           <button class="btn btn-primary" type="submit">Enviar</button>
         </div>

@@ -4,15 +4,19 @@
 {% load static %}
  <link rel="stylesheet" href="{% static 'appRRHH/css/formulario.css' %}" type="text/css">
 
-{% block head %}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
-{% endblock  %}
+ {% block linkPropios %}
+ <link rel="stylesheet" href="{% static 'appRRHH/css/crear.css' %}" type="text/css">
+{% endblock %}
 
 {% block baseHtml %}
-  <div class="container">
-    <form method="POST" action="{% url 'crear_registro_medico' %}">
+<div class="container">
+  <div class="title-crear">
+      <h1>Crear Registro Médico</h1>
+  </div>
+
+    <form method="POST" action="{% url 'crear_registro_medico' %}" class="form-crear">
     {% csrf_token %}
-    <div>
+    <div class="form-crear">
       <label for="rut">RUT: </label>
         <select name="rut" id="rut">
           {% for rut in trabajadores %}
@@ -21,29 +25,29 @@
         </select>
     </div>
 
-    <div>
+    <div class="form-crear">
       <label for="tipo_registro_medico">Tipo de registro médico:</label>
       <input type="text" id="tipo_registro_medico" name="tipo_registro_medico" required><br>
     </div>
 
-    <div>
+    <div class="form-crear">
       <label for="rm_fecha_ingreso">Fecha de ingreso:</label>
       <input type="date" id="rm_fecha_ingreso" name="rm_fecha_ingreso" required><br>
     </div>
 
-    <div>
+    <div class="form-crear">
       <label for="rm_fecha_termino">Fecha de termino:</label>
       <input type="date" id="rm_fecha_termino" name="rm_fecha_termino" required><br>
     </div>
 
-    <div>  
+    <div class="form-crear">  
       <label for="archivo_medico">Archivo médico:</label>
       <input type="file" id="archivo_medico" name="archivo_medico" required><br>
     </div>
 
 
 
-      <div class="text-center">
+      <div class="text-center" class="form-crear">
         <div class="d-inline-block">
           <button class="btn btn-primary" type="submit">Enviar</button>
         </div>
