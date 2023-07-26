@@ -1,0 +1,91 @@
+{% extends 'base/index.html' %}
+{% block title %}modulo_trabajador{% endblock title %}
+
+{% load static %}
+
+<!-- Corrección en el enlace del CSS -->
+{% block linkPropios %}
+    <link rel="stylesheet" href="{% static 'appTrabajador/css/datosLaborales.css' %}" type="text/css">
+{% endblock %}
+
+{% block baseHtml %}
+    <div class="container">
+    {% if result.trabajador %}
+        <div class="datosLaborales">
+            <h1>Datos Laborales de {{ result.trabajador.nombre }}</h1>
+        </div>
+        <div class="datosLaborales">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Rut</th><th>Sexo</th><th>Dirección</th><th>Teléfono</th><th>Fecha de Ingreso</th>
+
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ result.trabajador.rut }}</td>
+                    <td>{{ result.trabajador.sexo }}</td>
+                    <th>{{ result.trabajador.direccion }}</th>
+                    <th>{{ result.trabajador.telefono }}</th>
+                    <th>{{ result.trabajador.fecha_ingreso }}</th>
+
+                </tr>
+            </tbody>
+        </table>
+
+        </div>
+        <div class="cargaFamiliar">
+            <h2>Cargas Familiares:</h2>
+
+                    <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th><th>Parentesco</th><th>Sexo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for carga in result.cargas_familiares %}
+                        <tr>
+                            <td>{{ carga.cf_nombre }}</td><td>{{ carga.parentesco }}</td><td>{{ carga.cf_sexo }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                    </table>
+
+
+        </div>
+        <div class="contactoEmergencia">
+            <h2>Contactos de Emergencia:</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Relación</th>
+                    <th>Teléfono</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for contacto in result.contactos_emergencia %}
+                <tr>
+                    <td>{{ contacto.ce_nombre }}</td>
+                    <td>{{ contacto.relacion_con_trabajador }}</td>
+                    <td>{{ contacto.ce_telefono }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- Enlace para editar información -->
+        <a href="{% url 'editar_informacion_personal' result.trabajador.rut %}" class="btn btn-primary">Editar Información</a>
+    {% else %}
+        <h1>No se encontraron datos para el trabajador</h1>
+    {% endif %}
+
+
+    </div>
+
+{% endblock %}
