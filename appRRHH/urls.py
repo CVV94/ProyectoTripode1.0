@@ -18,7 +18,6 @@ urlpatterns = [
 
     path('seleccion/Solicitud/',views.tipoDeSolicitudes,name='seleccionSolicitud'),
 
-    path('jefe',views.moduloJefeRRHH,name='modulo_jefeRRHH'),
     path('moduloRRHH/',views.moduloRRHH,name='modulo_RRHH'),
     path('moduloTrabajador/',views.moduloTrabajador,name='modulo_trabajador'),
     path('ficha/trabajador/',views.fichaTrabajador,name='fichaTrabajador'),

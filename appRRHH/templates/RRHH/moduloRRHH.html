@@ -25,41 +25,41 @@
                 <div class="card">
                     <img src="{% static './appDb/img/ediTrabajadores.jpg' %}" class="card-img-top">
                     <div class="card-body">
-                        <h3 class="h5 card-title">Editar Usuarios</h3>
+                        <h3 class="h5 card-title">Listado de Trabajadores</h3>
                         <p class="card-text">
-                            Personaliza la información de los trabajadores
+                            Visualiza la información de los trabajadores
                         </p>
-                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
+                        <a class="btn btn-outline-dark" href="{% url 'listTrabajadores' %}">Ingresar</a>
                     </div>
                 </div>  
                 <div class="card">
                     <img src="{% static './appDb/img/crearTrabajador.JPG' %}" class="card-img-top">
                     <div class="card-body">
-                        <h3 class="h5 card-title">Crear Ficha de Trabajador</h3>
+                        <h3 class="h5 card-title">Gestionar Solicitudes</h3>
                         <p class="card-text">
-                            Ingresa datos personales y laborales de los trabajadores
+                            Ingresa, edita y visualiza solicitudes
                         </p>
-                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
+                        <a class="btn btn-outline-dark" href="{% url 'solicitudes' %}">Ingresar</a>
                     </div>
                 </div>
                 <div class="card">
                     <img src="{% static './appDb/img/verTrabajadores.JPG' %}" class="card-img-top">
                     <div class="card-body">
-                        <h3 class="h5 card-title">Ver Trabajadores</h3>
+                        <h3 class="h5 card-title">Ficha Trabajador</h3>
                         <p class="card-text">
-                            Visualiza los perfiles de usuario
+                            Registra información del trabajador
                         </p>
-                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
+                        <a class="btn btn-outline-dark" href="{% url 'fichaTrabajador' %}">Ingresar</a>
                     </div>
                 </div>
                 <div class="card">
                     <img src="{% static './appDb/img/verSolicitudes.png' %}" class="card-img-top">
                     <div class="card-body">
-                        <h3 class="h5 card-title">Ver Solicitudes</h3>
+                        <h3 class="h5 card-title">Gestionar Registros Médicos</h3>
                         <p class="card-text">
-                            Visualiza las solicitudes ingresados por los trabajadores
+                            Registra y visualiza registros médicos
                         </p>
-                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
+                        <a class="btn btn-outline-dark" href="{% url 'ver_registro_medico' %}">Ingresar</a>
                     </div>
                 </div>
                 <div class="card">
@@ -67,9 +67,9 @@
                     <div class="card-body">
                         <h3 class="h5 card-title">Evaluaciones de Desempeño</h3>
                         <p class="card-text">
-                            Visualiza y crea registros de evaluaciones de desempeño para cada empleado
+                            Visualiza y crea registros de evaluaciones de desempeño 
                         </p>
-                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
+                        <a class="btn btn-outline-dark" href="{% url 'ver_evaluacion' %}">Ingresar</a>
                     </div>
                 </div>
                 <div class="card">
@@ -79,7 +79,7 @@
                         <p class="card-text">
                             Gestiona la información de los contratos y acuerdos laborales de los empleados
                         </p>
-                        <button class="btn btn-outline-dark"><i class="fa fa-arrow-right"></i> Ingresar</button>
+                        <a class="btn btn-outline-dark" href="{% url 'solicitudes' %}">Ingresar</a>
                     </div>
                 </div>
             </div>
