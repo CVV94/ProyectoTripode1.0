@@ -1,6 +1,4 @@
-.title-listadoTrabajador{
-    color: #f2f2f2;
-}
+
 table{
     border: 1px solid white;
     border-collapse: collapse;
@@ -30,8 +28,9 @@ table td {
     font-weight: bold;
 }
 
-.title-listado-trabajador{
-    color: rgb(5, 24, 56);
+.title-solicitudes{
+    color: rgb(2, 13, 79);
+    text-align: center;
 }
 .listado{
     background: #8e9eab;  /* fallback for old browsers */

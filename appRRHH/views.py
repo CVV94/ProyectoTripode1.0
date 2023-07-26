@@ -27,6 +27,8 @@ def moduloJefeRRHH(request):
 def moduloTrabajador(request):
     return render(request,'RRHH/moduloRRHH.html') # redireccionar a la página del módulo de trabajador
 
+def tipoDeSolicitudes(request):
+    return render(request,'RRHH/tipodeSolicitudes.html' )
 
 login_required
 class listadotrabajador(ListView):
@@ -49,15 +51,32 @@ class ListSolicitudes(ListView):
     def dispatch(self, request, *args, **kwargs):           # Se usa para redireccionar
         return super().dispatch(request, *args, **kwargs)
     def get_queryset(self):
-        solicitudes = VacacionLicencia.objects.all()
+        solicitudes = VacacionLicencia.objects.filter(estado='Pendiente')
         return solicitudes
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'listado de Solicitudes'
+        context["title"] = 'listado de Solicitudes Pendientes'
         context["solicitudes"] = self.get_queryset()
         return context
-    
+
+class SolicitudesGestionadas(ListView):
+    model = VacacionLicencia
+    template_name = 'RRHH/solicitudesGestionadas.html'
+    def dispatch(self, request, *args, **kwargs):           # Se usa para redireccionar
+        return super().dispatch(request, *args, **kwargs)
+    def get_queryset(self):
+        solicitudes = VacacionLicencia.objects.exclude(estado='Pendiente')
+        return solicitudes
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = 'listado de Solicitudes Gestionadas'
+        context["solicitudes"] = self.get_queryset()
+        return context
+
+
+
 class GestionSolicitud(CreateView):
     model = VacacionLicencia
     form_class= LicenciaForm
