@@ -11,6 +11,7 @@
 {% block dataTable-css %}
     <link rel="stylesheet" href=" https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
 {% endblock  %}
+{% load humanize %}
 
 {% block baseHtml %}
 
@@ -45,8 +46,8 @@
                   <td>{{ solicitud.id_solicitud }}</td>
                   <td>{{ solicitud.rut }}</td>
                   <td>{{ solicitud.tipo_solicitud }}</td>
-                  <td>{{ solicitud.fecha_inicio }}</td>
-                  <td>{{ solicitud.fecha_fin }}</td>
+                  <td>{{ solicitud.fecha_inicio|date:"d/m/Y" }}</td>
+                  <td>{{ solicitud.fecha_fin|date:"d/m/Y" }}</td>
                   <td>{{ solicitud.dias }}</td>
                   <td>{{ solicitud.estado }}</td>
 

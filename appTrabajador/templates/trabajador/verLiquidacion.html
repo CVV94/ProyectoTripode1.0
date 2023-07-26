@@ -11,7 +11,7 @@
 {% block dataTable-css %}
     <link rel="stylesheet" href=" https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
 {% endblock  %}
-
+{% load humanize %}
 {% block baseHtml %}
 <div class="container">
     
@@ -27,7 +27,7 @@
         <tr>
             <td>{{ liquidacion.id_liquidacion }}</td>
             <td>{{ liquidacion.rut }}</td>
-            <td>{{ liquidacion.mes_liquidacion }}</td>
+            <td>{{ liquidacion.mes_liquidacion|date:"d/m/Y" }}</td>
             <td>{{ liquidacion.archivo_liquidacion }}</td>
         </tr>
         {% endfor %}
